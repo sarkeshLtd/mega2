@@ -1,0 +1,21 @@
+<table class="{if="$bs_control"}table {if="$border"}table-bordered {/if} {if="$hover"}table-hover{/if} {if="$striped"}table-striped{/if}{/if} {if="$class != ''"} {$class}{/if}" >
+    <thead>
+		<tr class="active">
+			{loop="$headers"}
+				<th class="text-center col-md-{$headers_width[$key1]}">
+					{$value}
+				</th>
+			{/loop}
+		</tr>
+    </thead>
+    <tbody>
+			{loop="$rows"}
+				<tr>
+					{loop="$value"}
+						<td class="{if="$align_center[$key2] == true"}text-center{/if}">{$value}</td>
+					{/loop}
+				</tr>
+			{/loop}
+
+    </tbody>
+</table>

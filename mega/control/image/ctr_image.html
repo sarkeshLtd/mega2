@@ -1,0 +1,9 @@
+
+	{if="!$inline"}<div class="text-center">{/if}
+		{if="$href != ''"}<a href="{$href}">{/if}
+		<img class="{if="$responsive"}img-responsive{/if} {if="$bs_control"}{$type}{/if} {$class}" {if="$style != ''"}style="{$style}"{/if} src="{$src}" alt="{$alt}" />
+		{if="$label != ''"}<p><label>{$label}</label></p>{/if}
+		{if="$href != ''"}</a>{/if}
+        {if="!$inline"}</div>{/if}
+
+

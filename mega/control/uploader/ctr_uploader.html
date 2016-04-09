@@ -1,0 +1,28 @@
+<div class="row body_ctr_uploader_{$name} col-xs-12 col-sm-12 col-lg-{$size}">	
+	<div class="panel panel-{$type}">
+		<div class="panel-heading">
+			<div class="panel-tittle">
+				{$label} : <span>{$help}</span>
+			</div>
+		</div>
+		<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<input type="hidden" id="id_ctr_uploader_{$name}" class="ca_{$form}" name="{$name}" form="{$form}" value="{$value}" ></input>
+						<div class="input-group">
+						  <span class="input-group-btn">
+							<button class="btn btn-primary btn_select_file_{$name}" type="button" onclick="document.getElementById('ctr_uploader_{$name}').click();">{$strSelect}</button>
+						  </span>
+						  <input type="text" readonly class="form-control txtFileName{$name}" placeholder="{$strFileName}">
+						  <span class="input-group-btn">
+							<button class="btn btn-danger btn_remove_file_{$name}" type="button" onclick="control_remove_file('{$removeUrl}','{$name}');" disabled="disabled">{$strRemove}</button>
+						  </span>
+						</div><!-- /input-group -->
+	    			</div>
+    			</div>
+		</div>	
+	</div>
+</div>
+<form name="form_ctr_upload_{$name}" id="form_ctr_upload_{$name}" enctype="multipart/form-data" >
+	<input type="file" name ="uploader" form="form_ctr_upload_{$name}" id ="ctr_uploader_{$name}" class ="ctr_uploader_{$name}" onchange="ctr_uploader_onchange(this,'{$uploadUrl}','{$filePort}','{$name}')" style="display: none;"/>
+</form>

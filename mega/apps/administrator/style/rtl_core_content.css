@@ -1,0 +1,16 @@
+
+body{
+	font-family: 'tahoma' !important;
+}
+h1, h2, h3{
+	font-family: 'tahoma' !important;
+}
+h4, h5, h6, p, blockquote, li{
+	font-family: 'tahoma' !important;
+}
+.navbar-left{
+	float: right;
+}
+.navbar-right{
+	float: right;
+}

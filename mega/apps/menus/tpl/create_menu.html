@@ -1,0 +1,6 @@
+{if="$show_header != FALSE"}<p>{$show_header}</p>{/if}
+<ul class="{if="$horiz == '1'"}nav navbar-nav{/if}">
+{loop="links"}
+    <li><a href="{$value.url}">{$value.label}</a></li>
+{/loop}
+</ul>

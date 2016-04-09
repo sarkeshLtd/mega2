@@ -1,0 +1,11 @@
+<div class="row {if="$pad_up"}row_pad{/if}">
+	<div class="col-xs-{$size}">
+		<div class="row {if="$VERTICAL_ALIGN"}vertical-align{/if}">
+			{loop="$e"}
+				<div class="col-xs-{$value.width} col-md-offset-{$value.offset} {$value.center}">
+					{$value.body}
+				</div>
+			{/loop}
+		</div>
+	</div>
+</div>

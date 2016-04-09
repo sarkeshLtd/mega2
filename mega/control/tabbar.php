@@ -1,0 +1,51 @@
+<?php
+namespace Mega\Control;
+use \Mega\Control as control;
+class tabbar extends control\tabbar\module{
+	private $tabs;
+	private $config;
+	public $active_tab;
+	function __construct(){
+		parent::__construct();
+		$this->tabs = [];
+		$this->config = [];
+		$this->config['NAME'] = "TABBAR_";
+		$this->config['ACTIVE_TAB'] = "0";
+		$this->config['ACTIVE_INDEX'] = "0";
+		$this->active_tab=false;
+	}
+	
+	public function draw(){
+		return $this->module_draw($this->tabs,$this->config);
+	}
+	
+	public function add($form){
+		if($this->active_tab == false){
+			$e['active'] = true;
+			$this->active_tab =true;
+		}
+		else{
+			$e['active'] = false;
+		}
+		
+		$e['id'] = $form->get('NAME');
+		$e['label'] = $form->get('LABEL');
+		$e['body'] = $form->draw();
+		array_push($this->tabs, $e);
+	}
+	
+	/*
+	 * function use for set configs like object
+	 * @param strin $key, key of config
+	 * @param string $value, value of config
+	 * @return boolean result
+	 */
+	public function __set($key,$value){
+		$key = strtoupper($key);
+		if(key_exists($key, $this->config)){		
+			$this->config[$key] = $value;
+			return TRUE;
+		}
+		return FALSE;
+	}
+}

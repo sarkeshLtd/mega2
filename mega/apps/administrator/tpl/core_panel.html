@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+    <head>
+    {$page_headers}
+    <title>{$page_title}</title>
+    </head>
+    <body>
+		{if="$single_panel"}
+		<div class="container" style="width:40%;">
+			{$page_content}
+		</div>
+		{/if}
+		{if="!$single_panel"}
+			{$page_content}
+		{/if}
+    </body>
+</html>

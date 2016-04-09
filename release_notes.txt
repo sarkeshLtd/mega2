@@ -1,0 +1,31 @@
+Release note
+MegaCMF 2.0.0 Alfa
+Build number:9410XX
+
+System requirements:
+- OS: Linux +3.5.2
+- Apache: +2.0
+- PHP: +5.4
+- mysql: +4
+
+Additions
+
+
+Removes
+    
+
+fixes:
+	-Review on system
+
+installation:
+	-create blank database
+	-upload system to your host
+	-import install\import.sql to your database
+	-edit db_config.php for connect to your database
+
+
+Enjoy from MegaCMF
+Sarkesh LTD
+Babak alizadeh
+
+

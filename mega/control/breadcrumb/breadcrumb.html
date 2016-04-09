@@ -1,0 +1,10 @@
+<ol class="breadcrumb">
+    {loop="$links"}
+        {if="!is_null($value1->url)"}
+            <li><a href="{$value->url}">{$value->label}</a></li>
+        {/if}
+        {if="is_null($value1->url)"}
+            <li class="active">{$value->label}</li>
+        {/if}
+    {/loop}
+</ol>

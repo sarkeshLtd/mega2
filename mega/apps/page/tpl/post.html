@@ -1,0 +1,21 @@
+    <!-- Date/Time -->
+    <p>{$INFO}</p>
+    <!-- Preview Image -->
+    {if="$image"}
+        <hr>
+        <img class="img-responsive" src="{$fileAdr}" alt="">
+        <hr>
+    {/if}
+    <!-- Post Content -->
+    <p>{$BODY}</p>
+    {if="isset($TAGS)"}
+        <div class="well well-sm">{$strTags} {$TAGS}</div>
+    {/if}
+
+    {if="isset($commentForm)"}
+        {$commentForm}
+    {/if}
+    {if="isset($comments)"}
+        <h2>{$strComments}</h2>
+        {$comments}
+    {/if}
