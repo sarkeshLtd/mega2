@@ -22,13 +22,13 @@ trait view {
 		$form->add($label);
 		//add update and cancel buttons
 		$btnClear = new control\button('btnClear');
-		$btnClear->configure('LABEL',_('Clear Errors'));
+		$btnClear->configure('LABEL',_t('Clear Errors'));
 		$btnClear->configure('P_ONCLICK_PLUGIN','reports');
 		$btnClear->configure('P_ONCLICK_FUNCTION','onclickBtnClearPhpErrors');
 		$btnClear->configure('TYPE','primary');
 			
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','administrator','dashboard']));
 			
 		$row = new control\row;
@@ -37,6 +37,6 @@ trait view {
 		$row->add($btnClear,2);
 		$row->add($btnCancel,10);
 		$form->add($row);                
-		return [_('PHP Error logs'),$form->draw()];
+		return [_t('PHP Error logs'),$form->draw()];
 	}
 }

@@ -14,11 +14,11 @@ class module extends view{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','menus','doMenu']);
-		array_push($menu,[$url, _('New menu')]);
+		array_push($menu,[$url, _t('New menu')]);
 		$url = core\general::createUrl(['service','administrator','load','menus','listMenus']);
-		array_push($menu,[$url, _('List menus')]);
+		array_push($menu,[$url, _t('List menus')]);
 		$ret = array();
-		array_push($ret, ['<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>' , _('Menus')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>' , _t('Menus')]);
 		array_push($ret,$menu);
 		return $ret;
 	}

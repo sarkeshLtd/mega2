@@ -16,7 +16,7 @@ class zip{
 	function __construct($fileName){
 		$this->zip = new \ZipArchive;
 		if ($this->zip->open($fileName) === FALSE) {
-			exit( _('Can not open zip archive files'));
+			exit( _t('Can not open zip archive files'));
 		}
 	}
 	

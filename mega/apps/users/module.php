@@ -19,15 +19,15 @@ class module{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','users','listPeople']);
-		array_push($menu,[$url, _('People')]);
+		array_push($menu,[$url, _t('People')]);
 		$url = core\general::createUrl(['service','administrator','load','users','listGroups']);
-		array_push($menu,[$url, _('Groups')]);
+		array_push($menu,[$url, _t('Groups')]);
 		$url = core\general::createUrl(['service','administrator','load','users','accountSettings']);
-		array_push($menu,[$url, _('Account settings')]);
+		array_push($menu,[$url, _t('Account settings')]);
 		$url = core\general::createUrl(['service','administrator','load','users','ipBlockList']);
-		array_push($menu,[$url, _('IP address blocking')]);
+		array_push($menu,[$url, _t('IP address blocking')]);
 		$ret = array();
-		array_push($ret, ['<span class="glyphicon glyphicon-user" aria-hidden="true"></span>' , _('Users')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-user" aria-hidden="true"></span>' , _t('Users')]);
 		array_push($ret,$menu);
 		return $ret;
 	}
@@ -72,7 +72,7 @@ class module{
 			//username or password is incerrect
 			$e['username']['VALUE'] = '';
 			$e['password']['VALUE'] = '';
-			$e['RV']['MODAL'] = browser\page::showBlock(_('Message'), _('Username or Password is incerrect!'), 'MODAL','type-warning');
+			$e['RV']['MODAL'] = browser\page::showBlock(_t('Message'), _t('Username or Password is incerrect!'), 'MODAL','type-warning');
 		}
 		return $e;
 	}

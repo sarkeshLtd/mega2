@@ -14,16 +14,16 @@ trait view {
     */
     protected function viewLoginReq(){
         $btnLogin = new control\button('btnLogin');
-        $btnLogin->label = _('Login');
+        $btnLogin->label = _t('Login');
         $btnLogin->type = 'link';
         $btnLogin->href = core\general::createUrl(['users','login']);
 
         $btnRegister = new control\button('$btnRegister');
-        $btnRegister->label = _('Register');
+        $btnRegister->label = _t('Register');
         $btnRegister->type = 'link';
         $btnRegister->href = core\general::createUrl(['users','register']);
 
-        $label = new control\label('<div class="well well-sm">' . sprintf(_('For submit new comment %s or %s'),$btnLogin->draw(),$btnRegister->draw()) . '</div>');
+        $label = new control\label('<div class="well well-sm">' . sprintf(_t('For submit new comment %s or %s'),$btnLogin->draw(),$btnRegister->draw()) . '</div>');
         return $label->draw();
     }
 
@@ -51,9 +51,9 @@ trait view {
 
         if(!is_null($comments))
             $raintpl->assign( "comments", $this->viewComments($comments));
-        $raintpl->assign( "strComments",_('Comments:'));
+        $raintpl->assign( "strComments",_t('Comments:'));
 
-        $raintpl->assign( "strTags", _('Tags:'));
+        $raintpl->assign( "strTags", _t('Tags:'));
 		$raintpl->assign( "BODY", $post->body);
         $hasImage = false;
         $fileAdr = '';
@@ -68,9 +68,9 @@ trait view {
 		$calendar = \Mega\Cls\calendar\calendar::singleton();
         $infoString = '';
         if($settings->showAuthor == 1)
-            $infoString = sprintf(_('Post by %s'),$post->username);
+            $infoString = sprintf(_t('Post by %s'),$post->username);
         if($settings->showDate == 1)
-            $infoString .=  ' ' .sprintf(_('in %s'),$calendar->cdate($settings->postDateFormat,$post->date));
+            $infoString .=  ' ' .sprintf(_t('in %s'),$calendar->cdate($settings->postDateFormat,$post->date));
 		$raintpl->assign( "INFO", $infoString);
 		return [$post->title,$raintpl->draw('post',true)];
 	}
@@ -102,19 +102,19 @@ trait view {
                 $row->add($lbl_cat, 1);
 
                 $btn_edite = new control\button('btn_content_cats_edite');
-                $btn_edite->configure('LABEL', _('Edit'));
+                $btn_edite->configure('LABEL', _t('Edit'));
                 $btn_edite->configure('VALUE', $cat->id);
                 $btn_edite->configure('HREF', core\general::createUrl(['service', 'administrator', 'load', 'page', 'editeCat', $cat->id]));
                 $row->add($btn_edite, 2);
 
                 $btn_delete = new control\button('btn_content_cats_delete');
-                $btn_delete->configure('LABEL', _('Delete'));
+                $btn_delete->configure('LABEL', _t('Delete'));
                 $btn_delete->configure('HREF', core\general::createUrl(['service', 'administrator', 'load', 'page', 'sureDeleteCat', $cat->id]));
                 $btn_delete->configure('TYPE', 'danger');
                 $row->add($btn_delete, 2);
 
                 $table->add_row($row);
-                $table->configure('HEADERS', [_('ID'), _('Name'), _('Localize'), _('Edit'), _('Delete')]);
+                $table->configure('HEADERS', [_t('ID'), _t('Name'), _t('Localize'), _t('Edit'), _t('Delete')]);
                 $table->configure('HEADERS_WIDTH', [1, 7, 2, 1, 1]);
                 $table->configure('ALIGN_CENTER', [TRUE, FALSE, TRUE, TRUE, TRUE]);
                 $table->configure('BORDER', true);
@@ -124,17 +124,17 @@ trait view {
         }
         else{
             //catalogues not found
-            $abelNotFound = new control\label(_('No catalogue added.first add a catalogue.'));
+            $abelNotFound = new control\label(_t('No catalogue added.first add a catalogue.'));
             $form->add($abelNotFound);
         }
 
 		$btn_add_cats = new control\button('btn_add_cats');
-		$btn_add_cats->configure('LABEL',_('Add new catalogue'));
+		$btn_add_cats->configure('LABEL',_t('Add new catalogue'));
 		$btn_add_cats->configure('TYPE','success');
 		$btn_add_cats->configure('HREF',core\general::createUrl(['service','administrator','load','page','newCat']));
 		$form->add($btn_add_cats);
 		
-		return [_('Catalogues'),$form->draw()];
+		return [_t('Catalogues'),$form->draw()];
 	}
 
 
@@ -148,24 +148,24 @@ trait view {
         $form = new control\form('frmNewCatalogue');
 
         $txtName = new control\textbox('txtName');
-        $txtName->label = _('Catalogue name');
-        $txtName->place_holder = _('Catalogue name');
+        $txtName->label = _t('Catalogue name');
+        $txtName->place_holder = _t('Catalogue name');
         $txtName->size = 4;
         $form->add($txtName);
 
         $btnAddCat = new control\button('btnAddCat');
-        $btnAddCat->configure('LABEL',_('Add catalogue'));
+        $btnAddCat->configure('LABEL',_t('Add catalogue'));
         $btnAddCat->configure('TYPE','primary');
         $btnAddCat->p_onclick_plugin = 'page';
         $btnAddCat->p_onclick_function = 'btnOnclickAddCat';
 
         $ckbCanComment = new control\checkbox('ckbCanComment');
-        $ckbCanComment->label = _('Allow users and guests for submit comment?');
+        $ckbCanComment->label = _t('Allow users and guests for submit comment?');
         $form->add($ckbCanComment);
 
         $cobLang = new control\combobox('cobLang');
-        $cobLang->configure('LABEL',_('Localize'));
-        $cobLang->configure('HELP',_('select language of this catalogue'));
+        $cobLang->configure('LABEL',_t('Localize'));
+        $cobLang->configure('HELP',_t('select language of this catalogue'));
         $cobLang->configure('TABLE',$languages);
         $cobLang->configure('COLUMN_VALUES','id');
         $cobLang->configure('COLUMN_LABELS','language_name');
@@ -174,7 +174,7 @@ trait view {
         $form->add($cobLang);
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','page','catalogues']));
 
         $row = new control\row;
@@ -184,7 +184,7 @@ trait view {
         $row->add($btn_cancel,10);
         $form->add($row);
 
-        return [_('New catalogue'),$form->draw()];
+        return [_t('New catalogue'),$form->draw()];
     }
     
     /*
@@ -199,17 +199,17 @@ trait view {
        $hidID->value = $cat->id;
        $form->add($hidID);
        
-       $label = new control\label(sprintf(_('Are you sure for delete %s'),$cat->name));
+       $label = new control\label(sprintf(_t('Are you sure for delete %s'),$cat->name));
        $form->add($label);
        
        $btnDelete = new control\button('btnDelete');
-       $btnDelete->configure('LABEL',_('Yes, Delete'));
+       $btnDelete->configure('LABEL',_t('Yes, Delete'));
        $btnDelete->configure('TYPE','primary');
        $btnDelete->p_onclick_plugin = 'page';
        $btnDelete->p_onclick_function = 'btnOnclickDeleteCat';
         
        $btn_cancel = new control\button('btn_cancel');
-       $btn_cancel->configure('LABEL',_('Cancel'));
+       $btn_cancel->configure('LABEL',_t('Cancel'));
        $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','page','catalogues']));
 
        $row = new control\row;
@@ -219,7 +219,7 @@ trait view {
        $row->add($btn_cancel,11);
        $form->add($row);
        
-       return [sprintf(_('Delete %s'),$cat->name),$form->draw()];
+       return [sprintf(_t('Delete %s'),$cat->name),$form->draw()];
     }
     
     /*
@@ -237,29 +237,29 @@ trait view {
 		$form->add($hidID);
 		
         $txtName = new control\textbox('txtName');
-        $txtName->label = _('Catalogue name');
+        $txtName->label = _t('Catalogue name');
         $txtName->value = $cat->name;
-        $txtName->place_holder = _('Catalogue name');
+        $txtName->place_holder = _t('Catalogue name');
         $txtName->size = 4;
         $form->add($txtName);
 
 
         $btnAddCat = new control\button('btnEditeCat');
-        $btnAddCat->configure('LABEL',_('Save changes'));
+        $btnAddCat->configure('LABEL',_t('Save changes'));
         $btnAddCat->configure('TYPE','primary');
         $btnAddCat->p_onclick_plugin = 'page';
         $btnAddCat->p_onclick_function = 'btnOnclickEditeCat';
 
         $ckbCanComment = new control\checkbox('ckbCanComment');
-        $ckbCanComment->label = _('Allow users and guests for submit comment?');
+        $ckbCanComment->label = _t('Allow users and guests for submit comment?');
         $ckbCanComment->checked = false;
         if($cat->canComment == 1)
 			$ckbCanComment->checked = true;
         $form->add($ckbCanComment);
 
         $cobLang = new control\combobox('cobLang');
-        $cobLang->configure('LABEL',_('Default users roll'));
-        $cobLang->configure('HELP',_('New users get roll that you select in above.'));
+        $cobLang->configure('LABEL',_t('Default users roll'));
+        $cobLang->configure('HELP',_t('New users get roll that you select in above.'));
         $cobLang->configure('TABLE',$languages);
         $cobLang->configure('COLUMN_VALUES','id');
         $cobLang->configure('COLUMN_LABELS','language_name');
@@ -268,7 +268,7 @@ trait view {
         $form->add($cobLang);
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','page','catalogues']));
 
         $row = new control\row;
@@ -278,7 +278,7 @@ trait view {
         $row->add($btn_cancel,10);
         $form->add($row);
 
-        return [sprintf(_('Edite %s'),$cat->name),$form->draw()];
+        return [sprintf(_t('Edite %s'),$cat->name),$form->draw()];
 	}
 	
 	 /*
@@ -291,9 +291,9 @@ trait view {
 		
         //show author of post
         $ckbShowAuthor = new control\checkbox('ckbShowAuthor');
-		$ckbShowAuthor->configure('LABEL',_('Show author') );
+		$ckbShowAuthor->configure('LABEL',_t('Show author') );
 		
-		$ckbShowAuthor->configure('HELP',_('If checked,author of post show in posts and catlogues.'));
+		$ckbShowAuthor->configure('HELP',_t('If checked,author of post show in posts and catlogues.'));
 		if($settings->showAuthor == 1)
 			$ckbShowAuthor->configure('CHECKED',TRUE);
 		$form->add($ckbShowAuthor);
@@ -301,15 +301,15 @@ trait view {
 		
 		//show date of post
         $ckbShowDate = new control\checkbox('ckbShowDate');
-		$ckbShowDate->configure('LABEL',_('Show date') );
-		$ckbShowDate->configure('HELP',_('If checked,date will showed in post content.'));
+		$ckbShowDate->configure('LABEL',_t('Show date') );
+		$ckbShowDate->configure('HELP',_t('If checked,date will showed in post content.'));
 		if($settings->showDate == 1)
 			$ckbShowDate->configure('CHECKED',TRUE);
 		$form->add($ckbShowDate);
 		//set number of post per page
 		$cobPerPage = new control\combobox('cobPerPage');
-        $cobPerPage->configure('LABEL',_('Posts per page'));
-        $cobPerPage->configure('HELP',_('This option set number of post that can show per page.'));
+        $cobPerPage->configure('LABEL',_t('Posts per page'));
+        $cobPerPage->configure('HELP',_t('This option set number of post that can show per page.'));
         $cobPerPage->configure('SOURCE',[1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20]);
         $cobPerPage->configure('SELECTED_INDEX',$settings->PostPerPage);
         $cobPerPage->configure('SIZE',4);
@@ -317,13 +317,13 @@ trait view {
 		
         //add update and cancel buttons
 		$btnUpdate = new control\button('btnUpdate');
-		$btnUpdate->configure('LABEL',_('Update'));
+		$btnUpdate->configure('LABEL',_t('Update'));
 		$btnUpdate->configure('P_ONCLICK_PLUGIN','page');
 		$btnUpdate->configure('P_ONCLICK_FUNCTION','btnOnclickSaveSettings');
 		$btnUpdate->configure('TYPE','primary');
 		
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','administrator','dashboard']));
 		
 		$row = new control\row;
@@ -333,7 +333,7 @@ trait view {
 		$row->add($btnCancel,11);
 		$form->add($row);  
 
-		return [_('page settings'),$form->draw()];
+		return [_t('page settings'),$form->draw()];
 	}
 
     /*
@@ -345,32 +345,32 @@ trait view {
         $form = new control\form('frmNewPost');
 
         $txtTitle = new control\textbox('txtTitle');
-        $txtTitle->label = _('Title:');	
-        $txtTitle->PLACE_HOLDER = _('Your title in here!');
+        $txtTitle->label = _t('Title:');
+        $txtTitle->PLACE_HOLDER = _t('Your title in here!');
 
         $txtBody = new control\textarea('txtBody');
-        $txtBody->label = _('Body:');
+        $txtBody->label = _t('Body:');
         $txtBody->editor = true;
 
         $txtTags = new control\textbox('txtTags');
-        $txtTags->label = _('Tags:');
-        $txtTags->help = _("seperate tags with ','.");
+        $txtTags->label = _t('Tags:');
+        $txtTags->help = _t("seperate tags with ','.");
 
         $uplPhoto = new control\uploader('uplPhoto');
-        $uplPhoto->label = _('Featured image');
+        $uplPhoto->label = _t('Featured image');
         $uplPhoto->max_file_size = 65536 * 1024;
-        $uplPhoto->help = _('Set featured image');
+        $uplPhoto->help = _t('Set featured image');
 
         $cobCatalogue = new control\combobox('cobCatalogue');
-        $cobCatalogue->configure('LABEL',_('Catalogue'));
+        $cobCatalogue->configure('LABEL',_t('Catalogue'));
         $cobCatalogue->configure('TABLE',$cats);
         $cobCatalogue->configure('COLUMN_VALUES','id');
         $cobCatalogue->configure('COLUMN_LABELS','name');
         $cobCatalogue->configure('SIZE',3);
         
         $ckbPublish = new control\checkbox('ckbPublish');
-        $ckbPublish->label = _('Publish page?');
-        $ckbPublish->help = _('Uncheck for save page without publish for other.');
+        $ckbPublish->label = _t('Publish page?');
+        $ckbPublish->help = _t('Uncheck for save page without publish for other.');
         $ckbPublish->checked = true;
 
 		if(! is_null($page)){
@@ -389,13 +389,13 @@ trait view {
 		$form->addArray([$txtTitle,$txtBody,$txtTags,$uplPhoto,$cobCatalogue,$ckbPublish]);
         //add update and cancel buttons
         $btnSubmit = new control\button('btnSubmit');
-        $btnSubmit->configure('LABEL',_('Submit'));
+        $btnSubmit->configure('LABEL',_t('Submit'));
         $btnSubmit->configure('P_ONCLICK_PLUGIN','page');
         $btnSubmit->configure('P_ONCLICK_FUNCTION','btnOnclickSubmitPage');
         $btnSubmit->configure('TYPE','primary');
 
         $btnCancel = new control\button('btnCancel');
-        $btnCancel->configure('LABEL',_('Cancel'));
+        $btnCancel->configure('LABEL',_t('Cancel'));
         $btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','page','listPages']));
 
         $row = new control\row;
@@ -404,7 +404,7 @@ trait view {
         $row->add($btnSubmit,1);
         $row->add($btnCancel,11);
         $form->add($row);
-        return [_('New Page'), $form->draw()];
+        return [_t('New Page'), $form->draw()];
     }
     
     /*
@@ -413,15 +413,15 @@ trait view {
      */
     protected function viewMsgAddCatalogue(){
 		$form = new control\form('frmMsgAddCat');
-		$label = new control\label(_('Please add catalogue before submit new page!'));
+		$label = new control\label(_t('Please add catalogue before submit new page!'));
 		$form->add($label);
 		
 		$btnAddCat = new control\button('btnAddCat');
-		$btnAddCat->label = _('Add catalogue');
+		$btnAddCat->label = _t('Add catalogue');
 		$btnAddCat->type = 'default';
 		$btnAddCat->href = core\general::createUrl(['service','administrator','load','page','newCat']);
 		$form->add($btnAddCat);
-		return [_('Error!'),$form->draw()];
+		return [_t('Error!'),$form->draw()];
 	}
 	
 	 /*
@@ -436,7 +436,7 @@ trait view {
         $form = new control\form('blog_list_posts');
         
         $btn_add_post = new control\button('btn_add_post');
-		$btn_add_post->configure('LABEL',_('New post'));
+		$btn_add_post->configure('LABEL',_t('New post'));
 		$btn_add_post->configure('TYPE','success');
 		$btn_add_post->configure('HREF',core\general::createUrl(['service','administrator','load','page','newPage']));
 		$form->add($btn_add_post);
@@ -463,12 +463,12 @@ trait view {
                 $row->add($lbl_loc,1);
 
                 $btn_edite = new control\button('btn_content_cats_edite');
-                $btn_edite->configure('LABEL',_('Edit'));
+                $btn_edite->configure('LABEL',_t('Edit'));
                 $btn_edite->configure('HREF',core\general::createUrl(['service','administrator','load','page','editePost',$post->id]));
                 $row->add($btn_edite,2);
 
                 $btn_delete = new control\button('btn_content_cats_delete');
-                $btn_delete->configure('LABEL',_('Delete'));
+                $btn_delete->configure('LABEL',_t('Delete'));
                 $btn_delete->configure('HREF',core\general::createUrl(['service','administrator','load','page','sureDeletePage',$post->id]));
                 $btn_delete->configure('TYPE','danger');
                 $row->add($btn_delete,2);
@@ -476,7 +476,7 @@ trait view {
                 $table->add_row($row);
 
             }
-        $table->configure('HEADERS',[_('ID'),_('Header'),_('Catalogue'),_('Edit'),_('Delete')]);
+        $table->configure('HEADERS',[_t('ID'),_t('Header'),_t('Catalogue'),_t('Edit'),_t('Delete')]);
         $table->configure('HEADERS_WIDTH',[1,7,2,1,1]);
         $table->configure('ALIGN_CENTER',[TRUE,FALSE,TRUE,TRUE,TRUE]);
         $table->configure('BORDER',true);
@@ -488,18 +488,18 @@ trait view {
 		if($hasPre){
 			//add update and cancel buttons
 			$btnPre = new control\button('btnPre');
-			$btnPre->configure('LABEL',_('Privius'));
+			$btnPre->configure('LABEL',_t('Privius'));
 			$btnPre->configure('HREF',core\general::createUrl(['service','administrator','load','page','listPages',$pageNum - 1]));
 			$row->add($btnPre,6);
 		}
 		if($hasNext){
 			$btnNext = new control\button('btnNext');
-			$btnNext->configure('LABEL',_('Next'));
+			$btnNext->configure('LABEL',_t('Next'));
 			$btnNext->configure('HREF',core\general::createUrl(['service','administrator','load','page','listPages',$pageNum + 1]));
 			$row->add($btnNext,6);
 		}
 		$form->add($row);
-		return [_('Blog posts'),$form->draw()];
+		return [_t('Blog posts'),$form->draw()];
     }
     
     /*
@@ -514,17 +514,17 @@ trait view {
        $hidID->value = $post->id;
        $form->add($hidID);
        
-       $label = new control\label(sprintf(_('Are you sure for delete %s'),$post->title));
+       $label = new control\label(sprintf(_t('Are you sure for delete %s'),$post->title));
        $form->add($label);
        
        $btnDelete = new control\button('btnDelete');
-       $btnDelete->configure('LABEL',_('Yes, Delete'));
+       $btnDelete->configure('LABEL',_t('Yes, Delete'));
        $btnDelete->configure('TYPE','primary');
        $btnDelete->p_onclick_plugin = 'page';
        $btnDelete->p_onclick_function = 'btnOnclickDeletePost';
         
        $btn_cancel = new control\button('btn_cancel');
-       $btn_cancel->configure('LABEL',_('Cancel'));
+       $btn_cancel->configure('LABEL',_t('Cancel'));
        $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','page','listPages']));
 
        $row = new control\row;
@@ -534,7 +534,7 @@ trait view {
        $row->add($btn_cancel,11);
        $form->add($row);
        
-       return [sprintf(_('Delete %s'),$post->name),$form->draw()]; 
+       return [sprintf(_t('Delete %s'),$post->name),$form->draw()];
     }
     
     /*
@@ -580,7 +580,7 @@ trait view {
         $form->add($pageID);
 
         $txtBody = new control\textarea('txtBody');
-        $txtBody->label = _('Your comment:');
+        $txtBody->label = _t('Your comment:');
         $txtBody->editor = false;
         $txtBody->rows = 5;
         $form->add($txtBody);
@@ -589,7 +589,7 @@ trait view {
         $btnSubmit->type = 'primary';
         $btnSubmit->p_onclick_plugin = 'page';
         $btnSubmit->p_onclick_function = 'onclickSubmitComment';
-        $btnSubmit->label = _('Submit comment');
+        $btnSubmit->label = _t('Submit comment');
         $form->add($btnSubmit);
 
         return $form->draw();
@@ -610,7 +610,7 @@ trait view {
             if($this->fileExists($comment->photo))
                 $imgAvatar->src = $this->getFileAddress($comment->photo);
             $calendar = \Mega\Cls\calendar\calendar::singleton();
-            $header = sprintf(_('%s in %s'),$comment->username,$calendar->cdate('Y/m/d H:i:s',$comment->date));
+            $header = sprintf(_t('%s in %s'),$comment->username,$calendar->cdate('Y/m/d H:i:s',$comment->date));
             $body = $imgAvatar->draw() . $comment->body;
             $label = new control\label(browser\page::showBlock($header,$body,'BLOCK','primary'));
             $tile->add($label->draw());
@@ -642,7 +642,7 @@ trait view {
 
                 $btnDelete = new control\button('btnDelete');
                 $btnDelete->value = $comment->id;
-                $btnDelete->label = _('Delete');
+                $btnDelete->label = _t('Delete');
                 $btnDelete->p_onclick_plugin = 'page';
                 $btnDelete->p_onclick_function = 'btnDeleteComment';
                 $btnDelete->type = 'danger';
@@ -650,7 +650,7 @@ trait view {
 
                 $table->add_row($row);
             }
-        $table->configure('HEADERS',[_('ID'),_('User'),_('Comment'),_('Delete')]);
+        $table->configure('HEADERS',[_t('ID'),_t('User'),_t('Comment'),_t('Delete')]);
         $table->configure('HEADERS_WIDTH',[1,1,7,2]);
         $table->configure('ALIGN_CENTER',[TRUE,TRUE,FALSE,TRUE]);
         $table->configure('BORDER',true);
@@ -662,7 +662,7 @@ trait view {
         if($hasPre)
             $pagination->pre_url = core\general::createUrl(['service','administrator','load','page','listComments',$pageNum - 1]);
         $form->add($pagination);
-        return [_('Comments'),$form->draw()];
+        return [_t('Comments'),$form->draw()];
     }
 
 

@@ -41,19 +41,19 @@ class view {
                 $row->add($lbl_forum, 1);
 
                 $btn_edite = new control\button('btn_content_forums_edite');
-                $btn_edite->configure('LABEL', _('Edit'));
+                $btn_edite->configure('LABEL', _t('Edit'));
                 $btn_edite->configure('VALUE', $forum->id);
                 $btn_edite->configure('HREF', core\general::createUrl(['service', 'administrator', 'load', 'forum', 'editeForum', $forum->id]));
                 $row->add($btn_edite, 2);
 
                 $btn_delete = new control\button('btn_content_forums_delete');
-                $btn_delete->configure('LABEL', _('Delete'));
+                $btn_delete->configure('LABEL', _t('Delete'));
                 $btn_delete->configure('HREF', core\general::createUrl(['service', 'administrator', 'load', 'forum', 'sureDeleteforum', $forum->id]));
                 $btn_delete->configure('TYPE', 'danger');
                 $row->add($btn_delete, 2);
 
                 $table->add_row($row);
-                $table->configure('HEADERS', [_('ID'), _('Name and description'), _('Localize'), _('Edit'), _('Delete')]);
+                $table->configure('HEADERS', [_t('ID'), _t('Name and description'), _t('Localize'), _t('Edit'), _t('Delete')]);
                 $table->configure('HEADERS_WIDTH', [1, 7, 2, 1, 1]);
                 $table->configure('ALIGN_CENTER', [TRUE, FALSE, TRUE, TRUE, TRUE]);
                 $table->configure('BORDER', true);
@@ -63,17 +63,17 @@ class view {
         }
         else{
             //forumalogues not found
-            $abelNotFound = new control\label(_('No forum added.first add a forum.'));
+            $abelNotFound = new control\label(_t('No forum added.first add a forum.'));
             $form->add($abelNotFound);
         }
 
 		$btn_add_forums = new control\button('btn_add_forums');
-		$btn_add_forums->configure('LABEL',_('Add new forum'));
+		$btn_add_forums->configure('LABEL',_t('Add new forum'));
 		$btn_add_forums->configure('TYPE','success');
 		$btn_add_forums->configure('HREF',core\general::createUrl(['service','administrator','load','forum','newforum']));
 		$form->add($btn_add_forums);
 		
-		return [_('Forums'),$form->draw()];
+		return [_t('Forums'),$form->draw()];
 	}
 	
 	 /*
@@ -86,17 +86,17 @@ class view {
         $form = new control\form('frmNewforum');
 
         $txtName = new control\textbox('txtName');
-        $txtName->label = _('forum name');
-        $txtName->place_holder = _('forum name');
+        $txtName->label = _t('forum name');
+        $txtName->place_holder = _t('forum name');
         $txtName->size = 4;
         
         $txtDes = new control\textarea('txtDes');
 		$txtDes->editor = false;
-		$txtDes->label = _('Description');
+		$txtDes->label = _t('Description');
 		
         $cobLang = new control\combobox('cobLang');
-        $cobLang->configure('LABEL',_('Default users roll'));
-        $cobLang->configure('HELP',_('forum just show in selected localize'));
+        $cobLang->configure('LABEL',_t('Default users roll'));
+        $cobLang->configure('HELP',_t('forum just show in selected localize'));
         $cobLang->configure('TABLE',$languages);
         $cobLang->configure('COLUMN_VALUES','id');
         $cobLang->configure('COLUMN_LABELS','language_name');
@@ -105,24 +105,24 @@ class view {
 
         //create combobox for ranking
         $cobRank = new control\combobox('cobRank');
-        $cobRank->configure('LABEL',_('Rank'));
+        $cobRank->configure('LABEL',_t('Rank'));
         $cobRank->configure('SOURCE',[0,1,2,3,4,5,6,7,8,9,10]);
         $cobRank->configure('SIZE',3);
 
 		$btnDoForum = new control\button('btnDoForum');
-        $btnDoForum->configure('LABEL',_('Add forum'));
+        $btnDoForum->configure('LABEL',_t('Add forum'));
         $btnDoForum->configure('TYPE','primary');
         $btnDoForum->p_onclick_plugin = 'forum';
         $btnDoForum->p_onclick_function = 'btnOnclickDoForum';
         
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','page','listForums']));
 		if(!is_null($forum)){
 			$txtName->value = $forum->name;
 			$txtDes->value = $forum->des;
 			$cobLang->selected_index = $forum->localize;
-			$btnDoForum->label = _('Save changes');
+			$btnDoForum->label = _t('Save changes');
 			$hidID = new control\hidden('hidID');
 			$hidID->value = $forum->id;
 			$form->add($hidID);
@@ -135,7 +135,7 @@ class view {
         
         $form->addArray([$txtName,$txtDes,$cobLang,$cobRank,$row]);
 
-        return [_('New forum'),$form->draw()];
+        return [_t('New forum'),$form->draw()];
     }
 
     /*
@@ -150,17 +150,17 @@ class view {
         $hidID->value = $forum->id;
         $form->add($hidID);
 
-        $label = new control\label(sprintf(_('Are you sure for delete %s'),$forum->name));
+        $label = new control\label(sprintf(_t('Are you sure for delete %s'),$forum->name));
         $form->add($label);
 
         $btnDelete = new control\button('btnDelete');
-        $btnDelete->configure('LABEL',_('Yes, Delete'));
+        $btnDelete->configure('LABEL',_t('Yes, Delete'));
         $btnDelete->configure('TYPE','primary');
         $btnDelete->p_onclick_plugin = 'forum';
         $btnDelete->p_onclick_function = 'btnOnclickDeleteforum';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','forum','listForums']));
 
         $row = new control\row;
@@ -170,7 +170,7 @@ class view {
         $row->add($btn_cancel,11);
         $form->add($row);
 
-        return [sprintf(_('Delete %s'),$forum->name),$form->draw()];
+        return [sprintf(_t('Delete %s'),$forum->name),$form->draw()];
     }
 
     /*
@@ -186,19 +186,19 @@ class view {
         $form->add($hidID);
 
         $txtTitle = new control\textbox('txtTitle');
-        $txtTitle->label = _('Title:');
+        $txtTitle->label = _t('Title:');
 
         $txtBody = new control\textarea('txtBody');
-        $txtBody->label = _('Body:');
+        $txtBody->label = _t('Body:');
 
         $btnDelete = new control\button('btnSubmitTopic');
-        $btnDelete->configure('LABEL',_('Submit'));
+        $btnDelete->configure('LABEL',_t('Submit'));
         $btnDelete->configure('TYPE','primary');
         $btnDelete->p_onclick_plugin = 'forum';
         $btnDelete->p_onclick_function = 'btnOnclickDoTopic';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['forum','home']));
 
         $row = new control\row;
@@ -208,7 +208,7 @@ class view {
         $row->add($btn_cancel,10);
 
         $form->addArray([$txtTitle,$txtBody,$row]);
-        return [sprintf(_('New topic in %s'),$forum->name),$form->draw()];
+        return [sprintf(_t('New topic in %s'),$forum->name),$form->draw()];
     }
     /*
     * show form for edite topic
@@ -230,20 +230,20 @@ class view {
 
         $txtTitle = new control\textbox('txtTitle');
         $txtTitle->value = $topic->title;
-        $txtTitle->label = _('Title:');
+        $txtTitle->label = _t('Title:');
 
         $txtBody = new control\textarea('txtBody');
         $txtBody->value = $topic->body;
-        $txtBody->label = _('Body:');
+        $txtBody->label = _t('Body:');
 
         $btnEdite = new control\button('btnEditeTopic');
-        $btnEdite->configure('LABEL',_('Edite'));
+        $btnEdite->configure('LABEL',_t('Edite'));
         $btnEdite->configure('TYPE','primary');
         $btnEdite->p_onclick_plugin = 'forum';
         $btnEdite->p_onclick_function = 'btnOnclickUpdateTopic';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['forum','showTopic',$topic->id]));
 
         $row = new control\row;
@@ -253,7 +253,7 @@ class view {
         $row->add($btn_cancel,10);
 
         $form->addArray([$txtTitle,$txtBody,$row]);
-        return [sprintf(_('New topic in %s'),$forum->name),$form->draw()];
+        return [sprintf(_t('New topic in %s'),$forum->name),$form->draw()];
     }
     /*
 	 * show main page of forum
@@ -282,7 +282,7 @@ class view {
             $btnHtml = '';
             if($this->isLogedin()){
                 $btnNewTopic = new control\button('lblNewTopic');
-                $btnNewTopic->label = _('New topic');
+                $btnNewTopic->label = _t('New topic');
                 $btnNewTopic->href = core\general::createUrl(['forum', 'newTopic', $forum->id]);
                 $btnNewTopic->type = 'success';
                 $btnHtml = $btnNewTopic->draw();
@@ -304,10 +304,10 @@ class view {
                     $btnTopic->configure('TYPE', 'link');
                     $btnTopic->configure('HREF', core\general::createUrl(['forum', 'showTopic', $topic->id]));
                     $topicIcon = new control\tile('topicTile');
-                    $topicIcon->add('<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>' . $btnTopic->draw() . ' ' . sprintf(_('( %s Replays )'),$orm->count('forums_replays','topic=?',[$topic->id])));
+                    $topicIcon->add('<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>' . $btnTopic->draw() . ' ' . sprintf(_t('( %s Replays )'),$orm->count('forums_replays','topic=?',[$topic->id])));
                     $row->add($topicIcon,10);
 
-                    $lblAuthor = new control\label(sprintf(_('By %s'),$topic->username));
+                    $lblAuthor = new control\label(sprintf(_t('By %s'),$topic->username));
                     $row->add($lblAuthor,1);
 
                     $table->add_row($row);
@@ -317,9 +317,9 @@ class view {
             $form->add($table);
         }
         $tleStatic = new control\tile();
-        $tleStatic->add(browser\page::showBlock(_('Forum statics'),sprintf(_('%s replays in %s Topics by %s Members. Latest Member: %s'),$this->replaysCount(),$this->topicsCount(),$this->usersCount(),$this->lastRegisteredUser()),'BLOCK','primary'));
+        $tleStatic->add(browser\page::showBlock(_t('Forum statics'),sprintf(_t('%s replays in %s Topics by %s Members. Latest Member: %s'),$this->replaysCount(),$this->topicsCount(),$this->usersCount(),$this->lastRegisteredUser()),'BLOCK','primary'));
         $form->add($tleStatic);
-        return [_('Forums'),$form->draw()];
+        return [_t('Forums'),$form->draw()];
     }
 
     /*
@@ -342,13 +342,13 @@ class view {
             $avatar->style = "width:64px;";
             $avatarHtml = $avatar->draw();
         }
-        $label = new control\label($avatarHtml . sprintf(_('By %s in %s'), $topic->username, $calendar->cdate('Y/m/d H:i:s', $topic->publishDate)));
+        $label = new control\label($avatarHtml . sprintf(_t('By %s in %s'), $topic->username, $calendar->cdate('Y/m/d H:i:s', $topic->publishDate)));
         $topicHtml = new control\tile('topic');
         //show breadcrumb
         $bcAddress = new control\breadcrumb();
-        $bcAddress->add(core\general::createUrl(['forum','main']),_('Forums'));
+        $bcAddress->add(core\general::createUrl(['forum','main']),_t('Forums'));
         $bcAddress->add(core\general::createUrl(['forum','showForum',$forum->id]),$forum->name);
-        $bcAddress->add(null,_($topic->title));
+        $bcAddress->add(null,_t($topic->title));
         $topicHtml->add($bcAddress->draw());
 
         $row = new control\row;
@@ -356,12 +356,12 @@ class view {
         if(!is_null($user))
             if($topic->username == $user->username){
                 $btnEdite = new control\button('btnEditeTopic');
-                $btnEdite->label = _('Edite');
+                $btnEdite->label = _t('Edite');
                 $btnEdite->size = 'xs';
                 $btnEdite->href = core\general::createUrl(['forum','editeTopic',$topic->id]);
                 $row->add($btnEdite,1);
                 $btnDelete = new control\button('btnDeleteTopic');
-                $btnDelete->label = _('Delete');
+                $btnDelete->label = _t('Delete');
                 $btnDelete->href = core\general::createUrl(['forum','sureDeleteTopic',$topic->id]);
                 $btnDelete->type = 'danger';
                 $btnDelete->size = 'xs';
@@ -371,7 +371,7 @@ class view {
         $topicBody->add($row->draw());
         $topicHtml->add(browser\page::showBlock($label->draw(), $topicBody->draw(), 'BLOCK', 'primary'));
         if (!is_null($replays)) {
-            $topicHtml->add('<h1>' . _('Replays:') . '</h1>');
+            $topicHtml->add('<h1>' . _t('Replays:') . '</h1>');
             foreach ($replays as $replay) {
                 $calendar = \core\cls\calendar\calendar::singleton();
                 $avatarHtml = '';
@@ -383,18 +383,18 @@ class view {
                     $avatar->style = "width:45px;";
                     $avatarHtml = $avatar->draw();
                 }
-                $label = new control\label($avatarHtml . sprintf(_('By %s in %s'), $replay->username, $calendar->cdate('Y/m/d H:i:s', $replay->publishDate)));
+                $label = new control\label($avatarHtml . sprintf(_t('By %s in %s'), $replay->username, $calendar->cdate('Y/m/d H:i:s', $replay->publishDate)));
                 $row = new control\row;
                 $replayBody = new control\tile;
                 if(!is_null($user))
                     if($replay->username == $user->username){
                         $btnEdite = new control\button('btnEditeReplay');
-                        $btnEdite->label = _('Edite');
+                        $btnEdite->label = _t('Edite');
                         $btnEdite->size = 'xs';
                         $btnEdite->href = core\general::createUrl(['forum','editeReplay',$replay->id]);
                         $row->add($btnEdite,1);
                         $btnDelete = new control\button('btnDeleteReplay');
-                        $btnDelete->label = _('Delete');
+                        $btnDelete->label = _t('Delete');
                         $btnDelete->href = core\general::createUrl(['forum','sureDeleteReplay',$replay->id]);
                         $btnDelete->type = 'danger';
                         $btnDelete->size = 'xs';
@@ -425,21 +425,21 @@ class view {
         $hidID = new control\hidden('hidID');
         $hidID->value = $topic->id;
         $form->add($hidID);
-        $label = new control\label(sprintf(_('Are you sure fore delete %s in %s forum?'),$topic->title,$forum->name));
-        $lblWarrning = new control\label(_('This operation can not to be undo and this topic and all replays will be removed!'));
+        $label = new control\label(sprintf(_t('Are you sure fore delete %s in %s forum?'),$topic->title,$forum->name));
+        $lblWarrning = new control\label(_t('This operation can not to be undo and this topic and all replays will be removed!'));
         $lblWarrning->type = 'danger';
         $form->add($lblWarrning);
         $form->add_spc();
         $label->bs_control = true;
         $form->add($label);
         $btnDelete = new control\button('btnDeleteTopic');
-        $btnDelete->configure('LABEL',_('Yes,Delete'));
+        $btnDelete->configure('LABEL',_t('Yes,Delete'));
         $btnDelete->configure('TYPE','primary');
         $btnDelete->p_onclick_plugin = 'forum';
         $btnDelete->p_onclick_function = 'btnOnclickDeleteTopic';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('No,cancell'));
+        $btn_cancel->configure('LABEL',_t('No,cancell'));
         $btn_cancel->configure('HREF',core\general::createUrl(['forum','showTopic',$topic->id]));
 
         $row = new control\row;
@@ -449,7 +449,7 @@ class view {
         $row->add($btn_cancel,10);
 
         $form->add($row);
-        return [sprintf(_('Delete %s'),$topic->title),$form->draw()];
+        return [sprintf(_t('Delete %s'),$topic->title),$form->draw()];
     }
 
     /*
@@ -467,21 +467,21 @@ class view {
         $hidTopic->value = $topic->id;
         $form->add($hidTopic);
 
-        $label = new control\label(sprintf(_('Are you sure fore delete your replay in %s?'),$topic->title));
-        $lblWarrning = new control\label(_('This operation can not to be undo and this replay will be removed!'));
+        $label = new control\label(sprintf(_t('Are you sure fore delete your replay in %s?'),$topic->title));
+        $lblWarrning = new control\label(_t('This operation can not to be undo and this replay will be removed!'));
         $lblWarrning->type = 'danger';
         $form->add($lblWarrning);
         $form->add_spc();
         $label->bs_control = true;
         $form->add($label);
         $btnDelete = new control\button('btnDeleteTopic');
-        $btnDelete->configure('LABEL',_('Yes,Delete'));
+        $btnDelete->configure('LABEL',_t('Yes,Delete'));
         $btnDelete->configure('TYPE','primary');
         $btnDelete->p_onclick_plugin = 'forum';
         $btnDelete->p_onclick_function = 'btnOnclickDeleteReplay';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('No,cancell'));
+        $btn_cancel->configure('LABEL',_t('No,cancell'));
         $btn_cancel->configure('HREF',core\general::createUrl(['forum','showTopic',$topic->id]));
 
         $row = new control\row;
@@ -491,7 +491,7 @@ class view {
         $row->add($btn_cancel,10);
 
         $form->add($row);
-        return [sprintf(_('Delete Replay in %s topic'),$topic->title),$form->draw()];
+        return [sprintf(_t('Delete Replay in %s topic'),$topic->title),$form->draw()];
     }
 
     /*
@@ -507,11 +507,11 @@ class view {
         $form->add($hidID);
 
         $txtBody = new control\textarea('txtBody');
-        $txtBody->label = sprintf(_('Replay to %s'),$topic->title);
+        $txtBody->label = sprintf(_t('Replay to %s'),$topic->title);
         $form->add($txtBody);
 
         $btnReplay = new control\button('btnReplay');
-        $btnReplay->configure('LABEL',_('Submit Replay'));
+        $btnReplay->configure('LABEL',_t('Submit Replay'));
         $btnReplay->configure('TYPE','primary');
         $btnReplay->p_onclick_plugin = 'forum';
         $btnReplay->p_onclick_function = 'btnOnclickSubmitReplay';
@@ -526,16 +526,16 @@ class view {
      */
 	protected function viewLoginReq(){
         $btnLogin = new control\button('btnLogin');
-        $btnLogin->label = _('Login');
+        $btnLogin->label = _t('Login');
         $btnLogin->type = 'link';
         $btnLogin->href = core\general::createUrl(['users','login']);
 
         $btnRegister = new control\button('$btnRegister');
-        $btnRegister->label = _('Register');
+        $btnRegister->label = _t('Register');
         $btnRegister->type = 'link';
         $btnRegister->href = core\general::createUrl(['users','register']);
 
-        $label = new control\label('<div class="well well-sm">' . sprintf(_('For submit new replay %s or %s'),$btnLogin->draw(),$btnRegister->draw()) . '</div>');
+        $label = new control\label('<div class="well well-sm">' . sprintf(_t('For submit new replay %s or %s'),$btnLogin->draw(),$btnRegister->draw()) . '</div>');
         return $label->draw();
     }
 
@@ -551,7 +551,7 @@ class view {
 
         //show breadcrumb
         $bcAddress = new control\breadcrumb();
-        $bcAddress->add(core\general::createUrl(['forum','main']),_('Forums'));
+        $bcAddress->add(core\general::createUrl(['forum','main']),_t('Forums'));
         $bcAddress->add(null,$forum->name);
         $forumHtml->add($bcAddress->draw());
 
@@ -564,7 +564,7 @@ class view {
         $btnHtml = '';
         if($this->isLogedin()){
             $btnNewTopic = new control\button('lblNewTopic');
-            $btnNewTopic->label = _('New topic');
+            $btnNewTopic->label = _t('New topic');
             $btnNewTopic->href = core\general::createUrl(['forum', 'newTopic', $forum->id]);
             $btnNewTopic->type = 'success';
             $btnHtml = $btnNewTopic->draw();
@@ -584,15 +584,15 @@ class view {
 				$btnTopic->configure('TYPE', 'link');
 				$btnTopic->configure('HREF', core\general::createUrl(['forum', 'showTopic', $topic->id]));
 				$topicIcon = new control\tile('topicTile');
-				$topicIcon->add('<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>' . $btnTopic->draw() . ' ' . sprintf(_('( %s Replays )'),$orm->count('forums_replays','topic=?',[$topic->id])));
+				$topicIcon->add('<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>' . $btnTopic->draw() . ' ' . sprintf(_t('( %s Replays )'),$orm->count('forums_replays','topic=?',[$topic->id])));
 				$row->add($topicIcon,10);
 
-				$lblAuthor = new control\label(sprintf(_('By %s'),$topic->username));
+				$lblAuthor = new control\label(sprintf(_t('By %s'),$topic->username));
 				$row->add($lblAuthor,1);
 				$table->add_row($row);
 			}
         $forumHtml->add($table->draw());
-        return [_('Forums'),$forumHtml->draw()];
+        return [_t('Forums'),$forumHtml->draw()];
     }
 
     /*
@@ -608,18 +608,18 @@ class view {
         $form->add($hidID);
 
         $txtBody = new control\textarea('txtBody');
-        $txtBody->label = _('Body:');
+        $txtBody->label = _t('Body:');
         $txtBody->value = $replay->body;
         $form->add($txtBody);
 
         $btnEdite = new control\button('btnEditeReplay');
-        $btnEdite->configure('LABEL',_('Edite'));
+        $btnEdite->configure('LABEL',_t('Edite'));
         $btnEdite->configure('TYPE','primary');
         $btnEdite->p_onclick_plugin = 'forum';
         $btnEdite->p_onclick_function = 'btnOnclickUpdateReplay';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['forum','showTopic',$replay->topic]));
 
         $row = new control\row;
@@ -628,7 +628,7 @@ class view {
         $row->add($btnEdite,2);
         $row->add($btn_cancel,10);
         $form->add($row);
-        return [_('Edite replay'),$form->draw()];
+        return [_t('Edite replay'),$form->draw()];
     }
 
     /*
@@ -640,9 +640,9 @@ class view {
 
         $rreplays = [];
         foreach($replays as $replay){
-            array_push($rreplays, ['label' => sprintf(_('%s in %s'),$replay->username,$replay->title) ,'url' => core\general::createUrl(array('forum','showTopic',$replay->id)	)]);
+            array_push($rreplays, ['label' => sprintf(_t('%s in %s'),$replay->username,$replay->title) ,'url' => core\general::createUrl(array('forum','showTopic',$replay->id)	)]);
         }
-        return [_('Last replays in forum'),$this->createMenu($rreplays,0,FALSE)];
+        return [_t('Last replays in forum'),$this->createMenu($rreplays,0,FALSE)];
     }
 
     /*
@@ -654,21 +654,21 @@ class view {
         $form = new control\form('forumsSettings');
 
         $cobPostNumInHome = new control\combobox('postNumInHome');
-        $cobPostNumInHome->configure('LABEL',_('Number of topics in homepage:'));
-        $cobPostNumInHome->help = _('With this option you can select number of topics that you want to show in forum home page.');
+        $cobPostNumInHome->configure('LABEL',_t('Number of topics in homepage:'));
+        $cobPostNumInHome->help = _t('With this option you can select number of topics that you want to show in forum home page.');
         $cobPostNumInHome->configure('SELECTED_INDEX',$settings->postNumInHome);
         $cobPostNumInHome->configure('SOURCE',[3,4,5,6,7,8,9,10,15,20,25,30,40,50,100]);
         $cobPostNumInHome->configure('SIZE',3);
         $form->add($cobPostNumInHome);
 
         $btnEdite = new control\button('btnSaveSettings');
-        $btnEdite->configure('LABEL',_('Save'));
+        $btnEdite->configure('LABEL',_t('Save'));
         $btnEdite->configure('TYPE','primary');
         $btnEdite->p_onclick_plugin = 'forum';
         $btnEdite->p_onclick_function = 'btnOnclickSaveSettings';
 
         $btn_cancel = new control\button('btn_cancel');
-        $btn_cancel->configure('LABEL',_('Cancel'));
+        $btn_cancel->configure('LABEL',_t('Cancel'));
         $btn_cancel->configure('HREF',core\general::createUrl(['service','administrator','load','administrator','dashboard']));
 
         $row = new control\row;
@@ -677,7 +677,7 @@ class view {
         $row->add($btnEdite,1);
         $row->add($btn_cancel,11);
         $form->add($row);
-        return [_('Forums settings'),$form->draw()];
+        return [_t('Forums settings'),$form->draw()];
     }
 
     /**
@@ -690,6 +690,6 @@ class view {
         foreach($topics as $topic){
             $ttopics [] = ['label' => $topic->title ,'url' => core\general::createUrl(array('forum','showTopic',$topic->id)	)];
         }
-        return [_('Last Topics'),$this->createMenu($ttopics,0,FALSE)];
+        return [_t('Last Topics'),$this->createMenu($ttopics,0,FALSE)];
     }
 }

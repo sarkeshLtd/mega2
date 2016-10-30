@@ -55,7 +55,7 @@ class event extends module{
             if($e['txtTitle']['VALUE'] == '')
                 return browser\msg::modalNotComplete($e);
             elseif(strlen($e['txtBody']['VALUE']) < 12)
-                return browser\msg::modal($e,_('Message'),_('body of topic most be more 10 characters.'),'warning');
+                return browser\msg::modal($e,_t('Message'),_t('body of topic most be more 10 characters.'),'warning');
             elseif(array_key_exists('hidForum',$e)) {
                 if ($orm->count('forums_forums', 'id=?', [$e['hidForum']['VALUE']]) != 0) {
                     $topic = $orm->dispense('forums_topics');
@@ -83,7 +83,7 @@ class event extends module{
             if($e['txtTitle']['VALUE'] == '')
                 return browser\msg::modalNotComplete($e);
             elseif(strlen($e['txtBody']['VALUE']) < 12)
-                return browser\msg::modal($e,_('Message'),_('body of topic most be more 10 characters.'),'warning');
+                return browser\msg::modal($e,_t('Message'),_t('body of topic most be more 10 characters.'),'warning');
             elseif(array_key_exists('hidForum',$e) && array_key_exists('hidTopic',$e)) {
                 $orm = db\orm::singleton();
                 if ($orm->count('forums_forums', 'id=?', [$e['hidForum']['VALUE']]) != 0 && $orm->count('forums_topics', 'id=?', [$e['hidTopic']['VALUE']]) != 0) {
@@ -163,7 +163,7 @@ class event extends module{
                 if($e['txtBody']['VALUE'] == '' || $e['txtBody']['VALUE'] == '<br>')
                     return browser\msg::modalNotComplete($e);
                 elseif(strlen($e['txtBody']['VALUE']) < 10)
-                    return browser\msg::modal($e,_('Message'),_('body of replay most be more 10 characters.'),'warning');
+                    return browser\msg::modal($e,_t('Message'),_t('body of replay most be more 10 characters.'),'warning');
                 elseif ($orm->count('forums_topics', 'id=?', [$e['hidID']['VALUE']]) != 0) {
                     $user = $this->getCurrentUserInfo();
                     $replay = $orm->dispense('forums_replays');
@@ -190,7 +190,7 @@ class event extends module{
             if($e['txtBody']['VALUE'] == '')
                 return browser\msg::modalNotComplete($e);
             elseif(strlen($e['txtBody']['VALUE']) < 12)
-                return browser\msg::modal($e,_('Message'),_('body of topic most be more 10 characters.'),'warning');
+                return browser\msg::modal($e,_t('Message'),_t('body of topic most be more 10 characters.'),'warning');
             elseif(array_key_exists('hidID',$e) ){
                 $orm = db\orm::singleton();
                 if ($orm->count('forums_replays', 'id=?', [$e['hidID']['VALUE']]) != 0) {

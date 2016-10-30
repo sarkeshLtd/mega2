@@ -22,10 +22,10 @@ class uploader extends control\uploader\module{
 		$this->config['FORM'] = 'Form';
 		
 		//label is a text that show at the abow of element
-		$this->config['LABEL'] = _('File uploader');
+		$this->config['LABEL'] = _t('File uploader');
 		
 		//help is a text that show on control for take some note to user
-		$this->config['HELP'] = _('Select file and click on upload button.');
+		$this->config['HELP'] = _t('Select file and click on upload button.');
 		
 		//this config set width of controll that most be between 1 and 12 
 		//default value is 12 (full width)

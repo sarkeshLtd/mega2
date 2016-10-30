@@ -45,7 +45,7 @@ class orm{
 			$this->pdoObj->setAttribute( \PDO::ATTR_EMULATE_PREPARES, false );
 		}
 		catch(PDOException $e) {
-            echo sprintf(_('Error in query execution!Reason: %s') , $e->getMessage());
+            echo sprintf(_t('Error in query execution!Reason: %s') , $e->getMessage());
             exit;
         }
     }

@@ -17,12 +17,12 @@ class module extends view{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','forum','listForums']);
-		array_push($menu,[$url, _('Manage forums')]);
+		array_push($menu,[$url, _t('Manage forums')]);
 		$url = core\general::createUrl(['service','administrator','load','forum','settings']);
-		array_push($menu,[$url, _('Settings')]);
+		array_push($menu,[$url, _t('Settings')]);
 
 		$ret = [];
-		array_push($ret, ['<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>' , _('Forums')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>' , _t('Forums')]);
 		array_push($ret,$menu);
 		return $ret;
 	}

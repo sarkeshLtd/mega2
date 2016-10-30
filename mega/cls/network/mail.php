@@ -631,7 +631,7 @@ class mail
         $local = $localize->localize();
         $raintpl->assign( "title", $subject);
         $raintpl->assign( "body", $body);
-        $raintpl->assign( "endMsg", _('Best Regards.'));
+        $raintpl->assign( "endMsg", _t('Best Regards.'));
         $raintpl->assign( "thanksMsg", $local->name . ' - ' . $local->slogon);
         $mail->setTo($email, $name)
             ->setSubject($subject)

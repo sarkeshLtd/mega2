@@ -14,8 +14,8 @@ use core\data as data;
 		 */
 		public static function getInfo(){
 			$info = new data\obj;
-			$info->name = _('Basic');
-			$info->author = _('Babak Alizadeh');
+			$info->name = _t('Basic');
+			$info->author = _t('Babak Alizadeh');
 			return $info;
 		}
 	}

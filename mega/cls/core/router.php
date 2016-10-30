@@ -102,7 +102,7 @@ class router{
 	* run services and jump request do plugin
 	*/
 	public function runService(){ 
-		 $result = _('Warning:Your requested service not found!');
+		 $result = _t('Warning:Your requested service not found!');
 		 if($this->objPlugin->enabled($this->plugin)){
 			 if(file_exists('./mega/apps/' . $this->plugin . '/service.php'))
 				 $PluginName = '\\Mega\\Apps\\' . $this->plugin . '\\service';

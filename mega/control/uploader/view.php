@@ -36,9 +36,9 @@ class view{
 		$this->raintpl->assign( "name", $config['NAME']);
 		$this->raintpl->assign( "label", $config['LABEL']);
 		$this->raintpl->assign( "help", $config['HELP']);
-		$this->raintpl->assign( "strSelect", _('Select file'));
-		$this->raintpl->assign( "strRemove", _('Remove'));
-		$this->raintpl->assign( "strFileName", _('File name ...'));
+		$this->raintpl->assign( "strSelect", _t('Select file'));
+		$this->raintpl->assign( "strRemove", _t('Remove'));
+		$this->raintpl->assign( "strFileName", _t('File name ...'));
 		$this->raintpl->assign( "size", $config['SIZE']);
         $this->raintpl->assign( "value", $config['VALUE']);
 		$this->raintpl->assign( "type", $config['TYPE']);

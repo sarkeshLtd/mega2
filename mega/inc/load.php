@@ -9,8 +9,8 @@ if(!empty($_SERVER['REMOTE_ADDR'])){
 	if( $orm->count('ipblock',"ip=?",[ip2long($_SERVER['REMOTE_ADDR'])]) != 0){
 		//show access denied message
 		header("HTTP/1.1 403 Unauthorized" );
-		$body = _("403! You are blocked by MegaCMF internal firewall.");
-		$title = _('MegaCMF Firewall!');
+		$body = _t("403! You are blocked by MegaCMF internal firewall.");
+		$title = _t('MegaCMF Firewall!');
 		$message = '<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>' . $title . '</title></head><body><div style="direction:rtl;">' . $body . '</div></body></html>';
 		exit($message);
 	}
@@ -90,7 +90,7 @@ try{
 	}
 }
 catch(Exception $e){
-	exit(_('Internal error!'));
+	exit(_t('Internal error!'));
 }
 /*
  * check for that start system in normal mode or service mode

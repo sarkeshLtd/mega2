@@ -19,11 +19,11 @@ class module{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','reports','ports']);
-		array_push($menu,[$url, _('File upload ports')]);
+		array_push($menu,[$url, _t('File upload ports')]);
 		$url = core\general::createUrl(['service','administrator','load','reports','places']);
-		array_push($menu,[$url, _('Places of files')]);
+		array_push($menu,[$url, _t('Places of files')]);
 		$ret = [];
-		array_push($ret, ['<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>' , _('Files')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>' , _t('Files')]);
 		array_push($ret,$menu);
 		return $ret;
 	}
@@ -67,11 +67,11 @@ class module{
 				$file->sid = $rndID;
 				$orm->store($file);
 				//create roll back object
-				$ret['msg'] = $ret['msg'] = browser\page::showBlock(_('Upload successful!'),_('Your file uploaded successfuly.'),'MODAL','type-success');
+				$ret['msg'] = $ret['msg'] = browser\page::showBlock(_t('Upload successful!'),_t('Your file uploaded successfuly.'),'MODAL','type-success');
 				$ret['fileID'] = $rndID;
 			}
 			else{
-				$ret['msg'] = browser\page::showBlock(_('File upload fail!'),_('File size or extension is not match with this type.'),'MODAL','type-warning');
+				$ret['msg'] = browser\page::showBlock(_t('File upload fail!'),_t('File size or extension is not match with this type.'),'MODAL','type-warning');
 			}
 		}
 		return $xml->arrayToXml($ret, "root");

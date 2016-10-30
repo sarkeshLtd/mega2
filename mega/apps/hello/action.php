@@ -14,7 +14,7 @@ class action extends module{
 	 * @return array content
 	 */
 	 public function sample(){
-		return [_('First page'),_('Welcome to your site please change home page from basic settings in administrator area.') ];
+		return [_t('First page'),_t('Welcome to your site please change home page from basic settings in administrator area.') ];
 	 }
 
 }

@@ -21,6 +21,6 @@ class view {
 		$lang->configure('P_ONCHANGE_PLUGIN','i18n');
 		$lang->configure('P_ONCHANGE_FUNCTION','changeLanguage');
 		$form->add($lang);
-		return array(_('Languages'), $form->draw());
+		return array(_t('Languages'), $form->draw());
 	}
 }

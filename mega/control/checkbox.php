@@ -60,8 +60,8 @@ class checkbox extends checkbox\module{
 		
 		//this config show checkbox like switch button
 		$this->config['SWITCH'] = FALSE;
-		$this->config['SWITCH_ONTEXT'] = _('ON');
-		$this->config['SWITCH_OFFTEXT'] = _('OFF');
+		$this->config['SWITCH_ONTEXT'] = _t('ON');
+		$this->config['SWITCH_OFFTEXT'] = _t('OFF');
 		
 		//------------------------------------------------------
 		//this configs set php plugin and function that should run with onclick event//

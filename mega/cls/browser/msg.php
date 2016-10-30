@@ -11,7 +11,7 @@ class msg{
 	 * @return array,standard event array
 	 */
 	public static function modalNotComplete($e){
-		$e['RV']['MODAL'] = page::showBlock(_('Message'),_('Please fill all necessary places.'),'MODAL','type-warning');
+		$e['RV']['MODAL'] = page::showBlock(_t('Message'),_t('Please fill all necessary places.'),'MODAL','type-warning');
 		return $e;
 	}
 	
@@ -22,7 +22,7 @@ class msg{
 	 * @return array,standard event array
 	 */
 	public static function modalSuccessfull($e,$page='N'){
-		$e['RV']['MODAL'] = page::showBlock(_('Successful'),_('Your request successfully completed.'),'MODAL','type-success');
+		$e['RV']['MODAL'] = page::showBlock(_t('Successful'),_t('Your request successfully completed.'),'MODAL','type-success');
 		if($page == 'R') $e['RV']['JUMP_AFTER_MODAL'] = 'R';
 		elseif($page != 'N') $e['RV']['JUMP_AFTER_MODAL'] = core\general::createUrl($page);
 		return $e;
@@ -35,7 +35,7 @@ class msg{
 	 */
 	public static function modalNoPermission($e){
 		//show access denied message
-		$e['RV']['MODAL'] = page::showBlock(_('Access Denied!'),_('You have no permission to do this operation!'),'MODAL','type-danger');
+		$e['RV']['MODAL'] = page::showBlock(_t('Access Denied!'),_t('You have no permission to do this operation!'),'MODAL','type-danger');
 		$e['RV']['JUMP_AFTER_MODAL'] = 'R';
 		return $e;
 	}
@@ -45,7 +45,7 @@ class msg{
 	 * @return array ['tittle','notfound message']
 	 */
 	public static function pageNotFound(){
-		return [_('404!'),_('Your requested page not found!')];
+		return [_t('404!'),_t('Your requested page not found!')];
 	}
 	
 	/*
@@ -53,14 +53,14 @@ class msg{
 	 * @return string, html content
 	 */
 	public static function serviceAccessDenied(){
-		$block = page::showBlock(_('503!'),_('You have no permission to access this page.'),'BLOCK','success');
+		$block = page::showBlock(_t('503!'),_t('You have no permission to access this page.'),'BLOCK','success');
 		$form = new control\form('coreAcessDeniedMSG');
 		$label = new control\label($block);
 		$jump = new control\button('btnJumpHome');
-		$jump->label = _('Home');
+		$jump->label = _t('Home');
 		$jump->href = DOMAIN_EXE;
 		$form->addArray([$label,$jump]);
-		return page::simplePage(_('503!'),$form->draw(),5,true);
+		return page::simplePage(_t('503!'),$form->draw(),5,true);
 	}
 
     /**
@@ -68,14 +68,14 @@ class msg{
      * @return string
      */
     public static function serviceNotFound(){
-        $block = page::showBlock(_('404!'),_('Your requested page was not found.'),'BLOCK','success');
+        $block = page::showBlock(_t('404!'),_t('Your requested page was not found.'),'BLOCK','success');
         $form = new control\form('coreNotFoundMSG');
         $label = new control\label($block);
         $jump = new control\button('btnJumpHome');
-        $jump->label = _('Home');
+        $jump->label = _t('Home');
         $jump->href = DOMAIN_EXE;
         $form->addArray([$label,$jump]);
-        return page::simplePage(_('404!'),$form->draw(),5,true);
+        return page::simplePage(_t('404!'),$form->draw(),5,true);
     }
 
 	/*
@@ -83,7 +83,7 @@ class msg{
 	 * @return array, html content
 	 */
 	public static function pageAccessDenied(){
-		return [_('Access denied!'),self::serviceAccessDenied()];
+		return [_t('Access denied!'),self::serviceAccessDenied()];
 	}
 	
 	/*
@@ -91,7 +91,7 @@ class msg{
 	 * @return array ['tittle','error message']
 	 */
 	public static function pageError(){
-		return [_('Error'),_('Some error was eccurred!')];
+		return [_t('Error'),_t('Some error was eccurred!')];
 	}
 	
 	/*
@@ -100,7 +100,7 @@ class msg{
 	 */
 	public static function modalEventError($e){
 		//show access denied message
-		$e['RV']['MODAL'] = page::showBlock(_('Error!'),_('Some error was eccurred! page will be refreshed.'),'MODAL','type-danger');
+		$e['RV']['MODAL'] = page::showBlock(_t('Error!'),_t('Some error was eccurred! page will be refreshed.'),'MODAL','type-danger');
 		$e['RV']['JUMP_AFTER_MODAL'] = 'R';
 		return $e;
 	}
@@ -130,7 +130,7 @@ class msg{
 	public static function modalEmailFormatError($e,$emailElement = 'txtEmail'){
 		//show access denied message
         $e[$emailElement]['VALUE'] = '';
-		$e['RV']['MODAL'] = page::showBlock(_('Error!'),_('Format of entered email is invalid.'),'MODAL','type-warning');
+		$e['RV']['MODAL'] = page::showBlock(_t('Error!'),_t('Format of entered email is invalid.'),'MODAL','type-warning');
 		return $e;
 	}
     
@@ -142,7 +142,7 @@ class msg{
 	public static function modalValueNotNumber($e,$element ){
 		//show access denied message
         $e[$element]['VALUE'] = '';
-		$e['RV']['MODAL'] = page::showBlock(_('Error!'),sprintf(_('Entered value for %s not integer.'),$e[$element]['LABEL']),'MODAL','type-warning');
+		$e['RV']['MODAL'] = page::showBlock(_t('Error!'),sprintf(_t('Entered value for %s not integer.'),$e[$element]['LABEL']),'MODAL','type-warning');
 		return $e;
 	}
 

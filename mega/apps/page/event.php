@@ -30,7 +30,7 @@ class event extends module{
 			}
 			else{
 				$e['txtName']['VALUE'] = '';
-				return browser\msg::modal($e,_('Message'),_('This catalogue is exists before.please try another one.'),'warning');
+				return browser\msg::modal($e,_t('Message'),_t('This catalogue is exists before.please try another one.'),'warning');
 			}
 		}
 		return browser\msg::modalNoPermission($e);
@@ -76,7 +76,7 @@ class event extends module{
 			}
 			else{
 				$e['txtName']['VALUE'] = '';
-				return browser\msg::modal($e,_('Message'),_('This catalogue is exists before.please try another one.'),'warning');
+				return browser\msg::modal($e,_t('Message'),_t('This catalogue is exists before.please try another one.'),'warning');
 			}
 		}
 		return browser\msg::modalNoPermission($e);

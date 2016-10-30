@@ -18,21 +18,21 @@ class module extends view{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','administrator','plugins']);
-		array_push($menu,[$url, _('Plugins')]);
+		array_push($menu,[$url, _t('Plugins')]);
 		$url = core\general::createUrl(['service','administrator','load','administrator','regAndLang']);
-		array_push($menu,[$url, _('Regional and Languages')]);
+		array_push($menu,[$url, _t('Regional and Languages')]);
 		$url = core\general::createUrl(['service','administrator','load','administrator','basicSettings']);
-		array_push($menu,[$url, _('Basic Settings')]);
+		array_push($menu,[$url, _t('Basic Settings')]);
 		$url = core\general::createUrl(['service','administrator','load','administrator','themes']);
-		array_push($menu,[$url, _('Apperance')]);
+		array_push($menu,[$url, _t('Apperance')]);
 		$url = core\general::createUrl(['service','administrator','load','administrator','blocks']);
-		array_push($menu,[$url, _('Blocks')]);
+		array_push($menu,[$url, _t('Blocks')]);
 		$url = core\general::createUrl(['service','administrator','load','administrator','coreSettings']);
-		array_push($menu,[$url, _('Core Settings')]);
+		array_push($menu,[$url, _t('Core Settings')]);
 		$url = core\general::createUrl(['service','administrator','load','administrator','checkUpdate']);
-		array_push($menu,[$url, _('Update Center')]);
+		array_push($menu,[$url, _t('Update Center')]);
 		$ret = array();
-		array_push($ret, ['<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>' , _('Administrator')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>' , _t('Administrator')]);
 		array_push($ret,$menu);
 		return $ret;
 	}
@@ -182,7 +182,7 @@ class module extends view{
 					foreach ($locals as $key => $local)
 						array_push($languages, [$local->language_name,$local->language]);
 					//add all block
-					array_push($languages, [_('All languages'),'all']);
+					array_push($languages, [_t('All languages'),'all']);
 					return $this->viewEditeBlock($block,$places,$languages);
 				}
 				return browser\msg::pageNotFound();

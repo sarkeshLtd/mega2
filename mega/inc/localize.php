@@ -1,6 +1,6 @@
 <?php
 /*
- * This file get system language and translate all _() function with po and mo difined files
+ * This file get system language and translate all _t() function with po and mo difined files
  * for add tranlations create your language folder in languages like fa_IR
  * step 2 create LC_MESSAGES folder on it and put your mo and po files inside it
  */
@@ -9,19 +9,20 @@ if($orm->count('localize') != 1)
 	define('MULTI_LANG',TRUE);
 else
 	define('MULTI_LANG',FALSE);
-	
-$localize = Mega\Cls\Core\localize::singleton();
-$language = $localize->language();
 
-
-putenv("LANG=" . $language );
-setlocale(LC_ALL, $language );
-if(extension_loaded('gettext')){
-	bindtextdomain($language, APP_PATH . "languages/");
-	textdomain($language);
-}else{
-	die('PHP `gettext` extension not installed.');
+//this function translate text of website
+function _t($key){
+	$orm = Mega\Cls\Database\orm::singleton();
+	$localize = Mega\Cls\Core\localize::singleton();
+	if($orm->count('translations','source=? and lang_code=?',[$key,$localize->language()])){
+		//return text
+		$text = $orm->findOne('translations','source=? and lang_code=?',[$key,$localize->language()]);
+		return $text->translated;
+	}
+	return $key;
 }
+
 //SET DEFINES STATIC VARIABLES
-define('SITE_LANG',$language);
+$localize = Mega\Cls\Core\localize::singleton();
+define('SITE_LANG',$localize->language());
 ?>

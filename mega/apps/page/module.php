@@ -19,18 +19,18 @@ class module{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','page','newPage']);
-		array_push($menu,[$url, _('New Page')]);
+		array_push($menu,[$url, _t('New Page')]);
 		$url = core\general::createUrl(['service','administrator','load','page','listPages']);
-		array_push($menu,[$url, _('List Pages')]);
+		array_push($menu,[$url, _t('List Pages')]);
 		$url = core\general::createUrl(['service','administrator','load','page','catalogues']);
-		array_push($menu,[$url, _('Catalogues')]);
+		array_push($menu,[$url, _t('Catalogues')]);
         $url = core\general::createUrl(['service','administrator','load','page','listComments']);
-        array_push($menu,[$url, _('Comments')]);
+        array_push($menu,[$url, _t('Comments')]);
 		$url = core\general::createUrl(['service','administrator','load','page','settings']);
-		array_push($menu,[$url, _('Page Settings')]);
+		array_push($menu,[$url, _t('Page Settings')]);
 
 		$ret = [];
-		array_push($ret, ['<span class="glyphicon glyphicon-book" aria-hidden="true"></span>' , _('Pages')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-book" aria-hidden="true"></span>' , _t('Pages')]);
 		array_push($ret,$menu);
 		return $ret;
 	}
@@ -233,7 +233,7 @@ class module{
 		foreach($cats as $cat){
 			array_push($ccats, ['label' => $cat->name,'url' => core\general::createUrl(array('page','catalogue',$cat->id)	)]);
 		}
-		return [_('Blog catalogues'),$this->createMenu($ccats,0,FALSE)];
+		return [_t('Blog catalogues'),$this->createMenu($ccats,0,FALSE)];
 	}
 	
 	/*
@@ -290,9 +290,9 @@ class module{
         if(!is_null($replays)){
             $rreplays = [];
             foreach($replays as $replay){
-                array_push($rreplays, ['label' => sprintf(_('%s in %s'),$replay->username,$replay->title) ,'url' => core\general::createUrl(array('page','show',$replay->adr)	)]);
+                array_push($rreplays, ['label' => sprintf(_t('%s in %s'),$replay->username,$replay->title) ,'url' => core\general::createUrl(array('page','show',$replay->adr)	)]);
             }
-            return [_('Last comments'),$this->createMenu($rreplays,0,FALSE)];
+            return [_t('Last comments'),$this->createMenu($rreplays,0,FALSE)];
         }
         return [null,null];
     }

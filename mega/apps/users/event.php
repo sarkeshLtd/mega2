@@ -49,11 +49,11 @@ class event extends module{
 		$e['txtUsername']['MSG'] = '';
 		$result = $this->checkUsername($e['txtUsername']['VALUE']);
 		if($result == 1)
-			$e['txtUsername']['MSG'] = _('Username most be more than 3 character!');
+			$e['txtUsername']['MSG'] = _t('Username most be more than 3 character!');
 		elseif($result == 2)
-			$e['txtUsername']['MSG'] = _('Only letters and digit allowed.');
+			$e['txtUsername']['MSG'] = _t('Only letters and digit allowed.');
 		elseif($result == 3)
-			$e['txtUsername']['MSG'] = _('This username is taken by another.try again!');
+			$e['txtUsername']['MSG'] = _t('This username is taken by another.try again!');
 		return $e;
 	}
 	 
@@ -66,9 +66,9 @@ class event extends module{
 		 $e['txtEmail']['MSG'] = '';
 		 $result = $this->checkEmail($e['txtEmail']['VALUE']);
 		 if($result == 1)
-			$e['txtEmail']['MSG'] = _("format of entered email in incerrect.");
+			$e['txtEmail']['MSG'] = _t("format of entered email in incerrect.");
 		 if($result == 2)
-			$e['txtEmail']['MSG'] = _("This email is taken by another.if that's you,use that to login to your account.");
+			$e['txtEmail']['MSG'] = _t("This email is taken by another.if that's you,use that to login to your account.");
 		 return $e;
 	 }
 	 
@@ -82,14 +82,14 @@ class event extends module{
 			return browser\msg::modalNotComplete($e);
 		//check username and email is valid
 		elseif(!is_null($this->checkUsername($e['txtUsername']['VALUE'])) || !is_null($this->checkEmail($e['txtEmail']['VALUE']))){
-			$e['RV']['MODAL'] = browser\page::showBlock(_('Message'),_('one or more of fileds invalid.please look at the messages of fileds.'),'MODAL','type-warning');
+			$e['RV']['MODAL'] = browser\page::showBlock(_t('Message'),_t('one or more of fileds invalid.please look at the messages of fileds.'),'MODAL','type-warning');
 			return $e;
 		}
 		//check for that register is enable
 		$registry = core\registry::singleton();
 		$settings = $registry->getPlugin('users');
 		if($settings->register == 0){
-			$e['RV']['MODAL'] = browser\page::showBlock(_('Message'),_('Register new user on this site is disabled!'),'MODAL','type-danger');
+			$e['RV']['MODAL'] = browser\page::showBlock(_t('Message'),_t('Register new user on this site is disabled!'),'MODAL','type-danger');
 			return $e;
 		}
 		//going to save user data
@@ -109,18 +109,18 @@ class event extends module{
             $activeCode = $validator->set('USERS_ACTIVE',false,false);
             $user->permission = $this->settings->notActivePermission;
             $user->state = 'A:' . $activeCode;
-            $header = _('Active account');
-            $body = '<strong>' . _("your account created and you can active that by visit url that's comes below:") . '</strong></br>';
-            $body .= sprintf('<a href="%s">%s</a>',core\general::createUrl(['users','activeAccount',$activeCode]),_('For active your account click here!'));
-            $e['RV']['MODAL'] = browser\page::showBlock(_('Successfull'),_('Your account was created and we send email for you. for active your account please check your inbox.'),'MODAL','type-success');
+            $header = _t('Active account');
+            $body = '<strong>' . _t("your account created and you can active that by visit url that's comes below:") . '</strong></br>';
+            $body .= sprintf('<a href="%s">%s</a>',core\general::createUrl(['users','activeAccount',$activeCode]),_t('For active your account click here!'));
+            $e['RV']['MODAL'] = browser\page::showBlock(_t('Successfull'),_t('Your account was created and we send email for you. for active your account please check your inbox.'),'MODAL','type-success');
         }
         else{
             //ACTIVE AND SEND PASSWORD TO USER
             $user->permission = $this->settings->defaultPermission;
             $user->state = 'E';
-            $header = _('%s Registeration');
-            $body = sprintf(_('<strong>your account was created and your information is</strong></br>password:%s'),$userPassword);
-            $e['RV']['MODAL'] = browser\page::showBlock(_('Successfull'),_('Your account was created and we send password to your email.please check your email.'),'MODAL','type-success');
+            $header = _t('%s Registeration');
+            $body = sprintf(_t('<strong>your account was created and your information is</strong></br>password:%s'),$userPassword);
+            $e['RV']['MODAL'] = browser\page::showBlock(_t('Successfull'),_t('Your account was created and we send password to your email.please check your email.'),'MODAL','type-success');
         }
         $e['RV']['JUMP_AFTER_MODAL'] = DOMAIN_EXE;
         network\mail::simpleSend($user->username,$user->email,$header,$body);
@@ -145,7 +145,7 @@ class event extends module{
 			$user->permission = $this->settings->defaultPermission;
 			$user->state = '';
 			$orm->store($user);
-			$e['RV']['MODAL'] = browser\page::showBlock(_('Successfull'),_('Your account was activated.now you can login to your account.'),'MODAL','type-success');
+			$e['RV']['MODAL'] = browser\page::showBlock(_t('Successfull'),_t('Your account was activated.now you can login to your account.'),'MODAL','type-success');
 			$e['RV']['JUMP_AFTER_MODAL'] = core\general::createUrl(['users','login']);
 			//send active account message to user email
 			
@@ -153,7 +153,7 @@ class event extends module{
 		}
 		//show message
 		$e['txtCode']['VALUE'] = '';
-		$e['RV']['MODAL'] = browser\page::showBlock(_('Fail!'),_('Your entered key is invalid please try again!'),'MODAL','type-warning');
+		$e['RV']['MODAL'] = browser\page::showBlock(_t('Fail!'),_t('Your entered key is invalid please try again!'),'MODAL','type-warning');
 		return $e;
 	}
 	
@@ -179,7 +179,7 @@ class event extends module{
 		if($this->hasAdminPanel()){
 			if(data\type::isIp($e['txtIp']['VALUE']) == FALSE){
 				$e['txtIp']['VALUE'] = '';
-				return browser\msg::modal($e,_('Error!'),_('Entered ip is invalid please try another one.'),'warning');
+				return browser\msg::modal($e,_t('Error!'),_t('Entered ip is invalid please try another one.'),'warning');
 			}
 			$orm = db\orm::singleton();
 			$ip = $orm->dispense('ipblock');
@@ -199,9 +199,9 @@ class event extends module{
 	public function onclickBtnChangePassword($e){
 		if($this->isLogedin()){
 			if(strlen($e['txtPassword']['VALUE']) < 6 || strlen($e['txtRePassword']['VALUE']) < 6)
-				return browser\msg::modal($e,('Warning') ,_('Selected password is too short! password most be more than 6 characters.'),'warning');
+				return browser\msg::modal($e,('Warning') ,_t('Selected password is too short! password most be more than 6 characters.'),'warning');
 			elseif($e['txtPassword']['VALUE'] != $e['txtRePassword']['VALUE'])
-				return browser\msg::modal($e,('Warning'),_('Entered passwords are not match'),'warning');
+				return browser\msg::modal($e,('Warning'),_t('Entered passwords are not match'),'warning');
 			$user = $this->getCurrentUserInfo();
 			$orm = db\orm::singleton();
 			$user->password = md5($e['txtPassword']['VALUE']);
@@ -220,7 +220,7 @@ class event extends module{
 		if($e['txtEmail']['VALUE'] == '')
 			return browser\msg::modalNotComplete($e);
 		elseif(!data\type::isEmail($e['txtEmail']['VALUE']))
-			return browser\msg::modal($e,('Warning'),_('Format of entered email is incerrect!'),'warning');
+			return browser\msg::modal($e,('Warning'),_t('Format of entered email is incerrect!'),'warning');
 		$orm = db\orm::singleton();
 		if($orm->count('users','email=?',[$e['txtEmail']['VALUE']]) != 0){
 			$validator = new network\validator;
@@ -230,20 +230,20 @@ class event extends module{
 			$user->forget = $validator->set('USERS_RESET',false,false);
 			$orm->store($user);
 			//send email to user
-            $header = sprintf(_('%s:Reset password'),$local->name);
+            $header = sprintf(_t('%s:Reset password'),$local->name);
             //set body of email
             $body = '<strong>' . $user->name . '</string></br>';
-            $body .= sprintf(_('We received a request to reset the password for your account at %s site.'),$local->name);
-            $body .= _("Here's a one-time login link for you to use to access your account and set a new password.");
-            $body .= '<a href="' . core\general::createUrl(['users','resetPassword',$user->forget]) . '">' . _('for login your account please click here!') . '</a></br>';
-            $body .= _("if you didn't request new login info, don't worry, this link will expire after a day and noting will happen if it's not used.");
+            $body .= sprintf(_t('We received a request to reset the password for your account at %s site.'),$local->name);
+            $body .= _t("Here's a one-time login link for you to use to access your account and set a new password.");
+            $body .= '<a href="' . core\general::createUrl(['users','resetPassword',$user->forget]) . '">' . _t('for login your account please click here!') . '</a></br>';
+            $body .= _t("if you didn't request new login info, don't worry, this link will expire after a day and noting will happen if it's not used.");
             
-            $e['RV']['MODAL'] = browser\page::showBlock(_('Successfull'),_('further instructions have been send to your email address.'),'MODAL','type-success');
+            $e['RV']['MODAL'] = browser\page::showBlock(_t('Successfull'),_t('further instructions have been send to your email address.'),'MODAL','type-success');
 			$e['RV']['JUMP_AFTER_MODAL'] = DOMAIN_EXE;
 			network\mail::simpleSend($user->username,$user->email,$header,$body);
 			return $e;
         }
-		return browser\msg::modal($e,_('Warning'), sprintf(_('Sorry, %s is not recognized as a e-mail address.'),$e['txtEmail']['VALUE']),'warning');
+		return browser\msg::modal($e,_t('Warning'), sprintf(_t('Sorry, %s is not recognized as a e-mail address.'),$e['txtEmail']['VALUE']),'warning');
 		$e['txtEmail']['VALUE'] = '';
 	}
 	
@@ -258,7 +258,7 @@ class event extends module{
 			$settings = $registry->getPlugin('users');
 			if($settings->usersCanUploadAvatar == 1){
 				if($e['userAvatar']['VALUE'] == '')
-					return browser\msg::modal($e,_('Error!'),_('Please first upload your avatar.'),'warning');
+					return browser\msg::modal($e,_t('Error!'),_t('Please first upload your avatar.'),'warning');
 				$user = $this->getCurrentUserInfo();
 				$this->fileRemove($user->photo);
 				$user->photo = $e['userAvatar']['VALUE'];
@@ -329,7 +329,7 @@ class event extends module{
 			$orm = db\orm::singleton();
 			if($orm->count('permissions','name=?',[$e['txtName']['VALUE']]) != 0){
 				$e['txtName']['VALUE'] = '';
-				return browser\msg::modal($e,_('Group exists'),_('Entered group is exists before.please try another name.'),'warning');
+				return browser\msg::modal($e,_t('Group exists'),_t('Entered group is exists before.please try another name.'),'warning');
 			}
 			$permission = $orm->dispense('permissions');
 			$permission->name = $e['txtName']['VALUE'];

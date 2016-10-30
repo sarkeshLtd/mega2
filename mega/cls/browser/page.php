@@ -236,13 +236,13 @@ class page{
 						$content .=  $body;
 					$content .=  '</content>' . "\n";
 					$content .=  '<btn-ok>';
-						$content .=  _('Ok');
+						$content .=  _t('Ok');
 					$content .=  '</btn-ok>' . "\n";
 					$content .=  '<btn-back>';
-						$content .=  _('Back');
+						$content .=  _t('Back');
 					$content .=  '</btn-back>' . "\n";
 					$content .=  '<btn-cancel>';
-						$content .=  _('Cancel');
+						$content .=  _t('Cancel');
 					$content .=  '</btn-cancel>' . "\n";
 				$content .=  '</message>' . "\n";
 
@@ -332,9 +332,9 @@ class page{
 	* this function show developers options
 	*/
 	public static function devPanel(){
-		echo _('Memory usage by system:') . memory_get_peak_usage() . '</br>';
-		echo _('Real usage by system:') . memory_get_usage() . '</br>';
-		echo _('CPU usage by system:');
+		echo _t('Memory usage by system:') . memory_get_peak_usage() . '</br>';
+		echo _t('Real usage by system:') . memory_get_usage() . '</br>';
+		echo _t('CPU usage by system:');
 		if( php_uname('s') == 'Windows NT'){
 			echo 'Not supported in windows';
 		}

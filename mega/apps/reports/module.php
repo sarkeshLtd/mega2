@@ -18,9 +18,9 @@ class module{
 	public static function coreMenu(){
 		$menu = array();
 		$url = core\general::createUrl(['service','administrator','load','reports','phpErrors']);
-		array_push($menu,[$url, _('PHP errors')]);
+		array_push($menu,[$url, _t('PHP errors')]);
 		$ret = [];
-		array_push($ret, ['<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>' , _('Reports')]);
+		array_push($ret, ['<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>' , _t('Reports')]);
 		array_push($ret,$menu);
 		return $ret;
 	}
@@ -37,7 +37,7 @@ class module{
 				return $this->viewPhpErrors($file);
 			}
 			//log not found this mean no error was acoured or error log file is empty
-			return [_('PHP Errors'),_('No error was ecured.')];
+			return [_t('PHP Errors'),_t('No error was ecured.')];
 		}
 		return browser\msg::pageAccessDenied();	
 	}

@@ -35,25 +35,25 @@ class view {
 					
 
 			$btnAddLink = new control\button;
-			$btnAddLink->configure('LABEL',_('Add link'));
+			$btnAddLink->configure('LABEL',_t('Add link'));
 			$btnAddLink->configure('TYPE','success');
 			$btnAddLink->configure('HREF',core\general::createUrl(['service','administrator','load','menus','doLink',$menu->id]));
 			$row->add($btnAddLink,1);
 
 			$btnManageLinks = new control\button;
-			$btnManageLinks->configure('LABEL',_('Manage links'));
+			$btnManageLinks->configure('LABEL',_t('Manage links'));
 			$btnManageLinks->configure('TYPE','default');
 			$btnManageLinks->configure('HREF',core\general::createUrl(['service','administrator','load','menus','listLinks',$menu->id]));
 			$row->add($btnManageLinks,1);
 
 			$btnEdite = new control\button;
-			$btnEdite->configure('LABEL',_('Edite'));
+			$btnEdite->configure('LABEL',_t('Edite'));
 			$btnEdite->configure('TYPE','default');
 			$btnEdite->configure('HREF',core\general::createUrl(['service','administrator','load','menus','doMenu',$menu->id]));
 			$row->add($btnEdite,1);
 
 			$btnDelete = new control\button;
-			$btnDelete->configure('LABEL',_('Delete'));
+			$btnDelete->configure('LABEL',_t('Delete'));
 			$btnDelete->configure('TYPE','danger');
 			$btnDelete->configure('HREF',core\general::createUrl(['service','administrator','load','menus','sureDeleteMenu',$menu->id]));
 			$row->add($btnDelete,1);
@@ -63,18 +63,18 @@ class view {
 		}
 		
 		//add headers to table
-		$table->configure('HEADERS',array(_('ID'),_('Name'),_('Localize'),_('Add link'),_('Manage'),_('Edite'),_('Delete')));
+		$table->configure('HEADERS',array(_t('ID'),_t('Name'),_t('Localize'),_t('Add link'),_t('Manage'),_t('Edite'),_t('Delete')));
 		$table->configure('HEADERS_WIDTH',[1,5,2,1,1,1,1]);
 		$table->configure('ALIGN_CENTER',[TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE]);
 		$table->configure('BORDER',true);
 		$form->add($table);
 
 		$btnNewMenu = new control\button;
-		$btnNewMenu->configure('LABEL',_('New menu'));
+		$btnNewMenu->configure('LABEL',_t('New menu'));
 		$btnNewMenu->configure('TYPE','success');
 		$btnNewMenu->configure('HREF',core\general::createUrl(['service','administrator','load','menus','doMenu']));
 		$form->add($btnNewMenu,1);
-		return [_('List of menus'),$form->draw()];
+		return [_t('List of menus'),$form->draw()];
 	}
 	
 	/*
@@ -87,47 +87,47 @@ class view {
 		$form = new control\form('frm_new_menu');
 
 		$txtMenuName = new control\textbox('txtName');
-		$txtMenuName->configure('LABEL',_('Menu name'));
+		$txtMenuName->configure('LABEL',_t('Menu name'));
 		$txtMenuName->configure('ADDON','*');
 		$txtMenuName->configure('SIZE',3);
 		
 		$txtMenuLabel = new control\textbox('txtHeader');
-		$txtMenuLabel->configure('LABEL',_('Header label'));
-		$txtMenuLabel->configure('HELP',_('This text show above of menu in template.'));
+		$txtMenuLabel->configure('LABEL',_t('Header label'));
+		$txtMenuLabel->configure('HELP',_t('This text show above of menu in template.'));
 		$txtMenuLabel->configure('ADDON','*');
 		$txtMenuLabel->configure('SIZE',3);
 
 		$ckbShowHeader = new control\checkbox('ckbShowHeader');
-		$ckbShowHeader->configure('LABEL',_('Show header label'));
-		$ckbShowHeader->configure('HELP',_('This option use for show or hide label of menu.'));
+		$ckbShowHeader->configure('LABEL',_t('Show header label'));
+		$ckbShowHeader->configure('HELP',_t('This option use for show or hide label of menu.'));
 		
 
 		//$form = new control\form('languages');
 		$cobLang = new control\combobox('cobLang');
-		$cobLang->configure('LABEL',_('Localize'));
-		$cobLang->configure('HELP',_('Created menu just will showed in selected localize.'));
+		$cobLang->configure('LABEL',_t('Localize'));
+		$cobLang->configure('HELP',_t('Created menu just will showed in selected localize.'));
 		$cobLang->configure('TABLE',$localizes);
 		$cobLang->configure('SIZE',4);
 		$cobLang->configure('COLUMN_LABELS','language_name');
 		$cobLang->configure('COLUMN_VALUES','language');
 
 		$ckbHorizontal = new control\checkbox('ckbHorizontal');
-		$ckbHorizontal->configure('LABEL',_('Horizontal menu'));
-		$ckbHorizontal->configure('HELP',_('if this option checked,menu show in horizontal mode.'));
+		$ckbHorizontal->configure('LABEL',_t('Horizontal menu'));
+		$ckbHorizontal->configure('HELP',_t('if this option checked,menu show in horizontal mode.'));
 
 		//add insert and cancel buttons
 		$btnDO = new control\button('btnDO');
-		$btnDO->configure('LABEL',_('Add'));
+		$btnDO->configure('LABEL',_t('Add'));
 		$btnDO->configure('P_ONCLICK_PLUGIN','menus');
 		$btnDO->configure('P_ONCLICK_FUNCTION','onclickBtnDoMenu');
 		$btnDO->configure('TYPE','primary');
 		
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','menus','listMenus']));
-		$header = _('New menu');
+		$header = _t('New menu');
 		if(!is_null($menu)){
-			$header = sprintf(_('Edite: %s'),$menu->name);
+			$header = sprintf(_t('Edite: %s'),$menu->name);
 			$txtMenuName->configure('VALUE',$menu->name);
 			$txtMenuLabel->configure('VALUE',$menu->header);
 			if($menu->horiz == '1')
@@ -142,7 +142,7 @@ class view {
 			$form->add($hidID);
 
 			//change label of button
-			$btnDO->configure('LABEL',_('Edite'));
+			$btnDO->configure('LABEL',_t('Edite'));
 		}
 		$form->add($txtMenuName);
 		$form->add($txtMenuLabel);
@@ -172,21 +172,21 @@ class view {
 		$form->add($hidID);
 
 		$lbl = new control\label;
-		$lbl->configure('LABEL',_('Are you sure for delete menu?'));
+		$lbl->configure('LABEL',_t('Are you sure for delete menu?'));
 		$lbl_menu_name = new control\label;
-		$lbl_menu_name->configure('LABEL',sprintf(_('Menu name: %s'),$menu->name));
+		$lbl_menu_name->configure('LABEL',sprintf(_t('Menu name: %s'),$menu->name));
 		$form->add($lbl);
 		$form->add($lbl_menu_name);
 
 		//add update and cancel buttons
 		$btnDelete = new control\button('btnDelete');
-		$btnDelete->configure('LABEL',_('Delete'));
+		$btnDelete->configure('LABEL',_t('Delete'));
 		$btnDelete->configure('P_ONCLICK_PLUGIN','menus');
 		$btnDelete->configure('P_ONCLICK_FUNCTION','onclickBtnDeleteMenu');
 		$btnDelete->configure('TYPE','danger');
 		
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','menus','listMenus']));
 		
 		$row = new control\row;
@@ -195,7 +195,7 @@ class view {
 		$row->add($btnDelete,1);
 		$row->add($btnCancel,11);
 		$form->add($row);
-		return [_('Delete menu'),$form->draw()];
+		return [_t('Delete menu'),$form->draw()];
 	}
 	
 	/*
@@ -221,13 +221,13 @@ class view {
 			$row->add($lblLinksName,2);
 		
 			$btnEdite = new control\button;
-			$btnEdite->configure('LABEL',_('Edite'));
+			$btnEdite->configure('LABEL',_t('Edite'));
 			$btnEdite->configure('TYPE','default');
 			$btnEdite->configure('HREF',core\general::createUrl(['service','administrator','load','menus','doLink',$link->ref_id,$link->id]));
 			$row->add($btnEdite,1);
 
 			$btnDelete = new control\button;
-			$btnDelete->configure('LABEL',_('Delete'));
+			$btnDelete->configure('LABEL',_t('Delete'));
 			$btnDelete->configure('TYPE','danger');
 			$btnDelete->configure('HREF',core\general::createUrl(['service','administrator','load','menus','sureDeleteLink',$link->id]));
 			$row->add($btnDelete,1);
@@ -237,7 +237,7 @@ class view {
 		}
 		
 		//add headers to table
-		$table->configure('HEADERS',array(_('ID'),_('Name'),_('Edite'),_('Delete')));
+		$table->configure('HEADERS',array(_t('ID'),_t('Name'),_t('Edite'),_t('Delete')));
 		$table->configure('HEADERS_WIDTH',[1,5,1,1,]);
 		$table->configure('ALIGN_CENTER',[TRUE,FALSE,TRUE,TRUE]);
 		$table->configure('BORDER',true);
@@ -245,12 +245,12 @@ class view {
 
 		//add insert_link and cancel buttons
 		$btnNewLink = new control\button('btnNewLink');
-		$btnNewLink->configure('LABEL',_('New link'));
+		$btnNewLink->configure('LABEL',_t('New link'));
 		$btnNewLink->configure('HREF',core\general::createUrl(['service','administrator','load','menus','doLink',$menuID]));
 		$btnNewLink->configure('TYPE','success');
 		
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','menus','listMenus']));
 		
 		$row = new control\row;
@@ -259,7 +259,7 @@ class view {
 		$row->add($btnNewLink,1);
 		$row->add($btnCancel,11);
 		$form->add($row);
-		return [_('List of links'),$form->draw()];
+		return [_t('List of links'),$form->draw()];
 	}
 	
 	/*
@@ -279,21 +279,21 @@ class view {
         $form->add($hidMenuID);
 
 		$lbl = new control\label;
-		$lbl->configure('LABEL',_('Are you sure for delete this link?'));
+		$lbl->configure('LABEL',_t('Are you sure for delete this link?'));
 		$lbl_menu_name = new control\label;
-		$lbl_menu_name->configure('LABEL',sprintf(_('link name: %s'),$link->label));
+		$lbl_menu_name->configure('LABEL',sprintf(_t('link name: %s'),$link->label));
 		$form->add($lbl);
 		$form->add($lbl_menu_name);
 
 		//add update and cancel buttons
 		$btnDelete = new control\button('btnDelete');
-		$btnDelete->configure('LABEL',_('Delete'));
+		$btnDelete->configure('LABEL',_t('Delete'));
 		$btnDelete->configure('P_ONCLICK_PLUGIN','menus');
 		$btnDelete->configure('P_ONCLICK_FUNCTION','onclickBtnDeleteLink');
 		$btnDelete->configure('TYPE','danger');
 		
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','menus','listLinks',$link->ref_id]));
 		
 		$row = new control\row;
@@ -302,7 +302,7 @@ class view {
 		$row->add($btnDelete,1);
 		$row->add($btnCancel,11);
 		$form->add($row);
-		return [_('Delete link'),$form->draw()];
+		return [_t('Delete link'),$form->draw()];
 	}
 	
 	/*
@@ -337,37 +337,37 @@ class view {
 		$hidMenuID->configure('VALUE',$menuID);
 
 		$txtLinkLabel = new control\textbox('txtLabel');
-		$txtLinkLabel->configure('LABEL',_('Link label'));
-		$txtLinkLabel->configure('HELP',_('This option set label for link.'));
+		$txtLinkLabel->configure('LABEL',_t('Link label'));
+		$txtLinkLabel->configure('HELP',_t('This option set label for link.'));
 		$txtLinkLabel->configure('ADDON','*');
 		$txtLinkLabel->configure('SIZE',3);
 		
 		$txtLinkUrl = new control\textbox('txtUrl');
-		$txtLinkUrl->configure('LABEL',_('URL'));
-		$txtLinkUrl->configure('HELP',_('This option set address of link.'));
+		$txtLinkUrl->configure('LABEL',_t('URL'));
+		$txtLinkUrl->configure('HELP',_t('This option set address of link.'));
 		$txtLinkUrl->configure('ADDON','*');
 		$txtLinkUrl->configure('SIZE',4);
 
 		$ckbEnable = new control\checkbox('ckbEnable');
-		$ckbEnable->configure('LABEL',_('Enable link'));
-		$ckbEnable->configure('HELP',_('With this, you can show or hide link in menu.'));
+		$ckbEnable->configure('LABEL',_t('Enable link'));
+		$ckbEnable->configure('HELP',_t('With this, you can show or hide link in menu.'));
 
 		//create combobox for ranking
 		$cobRank = new control\combobox('cobRank');
-        $cobRank->configure('LABEL',_('Rank'));
+        $cobRank->configure('LABEL',_t('Rank'));
         $cobRank->configure('SOURCE',[0,1,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20]);
-        $cobRank->configure('HELP',_('use for set position of link in menu.'));
+        $cobRank->configure('HELP',_t('use for set position of link in menu.'));
         $cobRank->configure('SIZE',3);
 
 		//add update and cancel buttons
 		$btnDo = new control\button('btnDo');
-		$btnDo->configure('LABEL',_('Add'));
+		$btnDo->configure('LABEL',_t('Add'));
 		$btnDo->configure('P_ONCLICK_PLUGIN','menus');
 		$btnDo->configure('P_ONCLICK_FUNCTION','onclickBtnDoLink');
 		$btnDo->configure('TYPE','primary');
 		
 		$btnCancel = new control\button('btnCancel');
-		$btnCancel->configure('LABEL',_('Cancel'));
+		$btnCancel->configure('LABEL',_t('Cancel'));
 		$btnCancel->configure('HREF',core\general::createUrl(['service','administrator','load','menus','listLinks',$menuID]));
 		
 		$row = new control\row;
@@ -383,7 +383,7 @@ class view {
 			$txtLinkUrl->configure('VALUE',$link->url);
 			$hidID = new control\hidden('hidID');
 			$hidID->configure('VALUE',$link->id);
-			$btnDo->configure('LABEL',_('Save'));
+			$btnDo->configure('LABEL',_t('Save'));
 			$cobRank->configure('SELECTED_INDEX',$link->rank);
 			$form->add($hidID);
 

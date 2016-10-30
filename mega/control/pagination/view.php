@@ -10,8 +10,8 @@ class view{
 		$this->raintpl->configure("tpl_dir",'./mega/control/pagination/');
 	}
 	public function view_draw($config){
-		$this->raintpl->assign("strOlder",_('Older'));
-        $this->raintpl->assign("strNext",_('Newer'));
+		$this->raintpl->assign("strOlder",_t('Older'));
+        $this->raintpl->assign("strNext",_t('Newer'));
         $this->raintpl->assign("nextUrl",$config['NEXT_URL']);
         $this->raintpl->assign("preUrl",$config['PRE_URL']);
 		return $this->raintpl->draw("pagination_simple",true);

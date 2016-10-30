@@ -36,7 +36,7 @@ class event{
 			}
 			else{
 				$e['txtValidateTime']['VALUE'] = '';
-				return browser\msg::modal($e,_('Data type error'),_('Validator expire time should be numberic.all settings expect this was saved.'),'warning');
+				return browser\msg::modal($e,_t('Data type error'),_t('Validator expire time should be numberic.all settings expect this was saved.'),'warning');
 			}
 			return browser\msg::modalSuccessfull($e,'N');
 		}
