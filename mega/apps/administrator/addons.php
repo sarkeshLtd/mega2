@@ -86,6 +86,10 @@ trait addons {
 					$pluginString = '\\apps\\' . $plugin . '\\setup';
 					$pluginObj = new $pluginString;
 					call_user_func(array( $pluginObj,'install'));
+
+					//import translations
+					$objLocalize = new core\localize;
+
 				}
 			}
 		}

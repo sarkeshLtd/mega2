@@ -16,5 +16,4 @@ class action extends module{
 	 public function sample(){
 		return [_t('First page'),_t('Welcome to your site please change home page from basic settings in administrator area.') ];
 	 }
-
 }

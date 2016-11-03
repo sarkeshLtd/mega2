@@ -15,7 +15,9 @@ Removes
     
 
 fixes:
-	-Review on system
+	-change translation system.
+	-change sql files for install to folder
+	-change all translation function to _t($key)
 
 installation:
 	-create blank database
@@ -27,5 +29,3 @@ installation:
 Enjoy from MegaCMF
 Sarkesh LTD
 Babak alizadeh
-
-

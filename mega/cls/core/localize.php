@@ -94,6 +94,16 @@ class localize{
 			return true;
 		return false;
 	}
+
+	/*
+	 * return all active languages
+	 * @RETURN ARRAY,all language codes
+	 */
+	public function getAllLanguageCodes(){
+		$orm = db\orm::singleton();
+		return $orm->getColumn('localize','language');
+
+	}
 	
 }
 ?>

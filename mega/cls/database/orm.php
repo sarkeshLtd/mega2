@@ -238,5 +238,17 @@ class orm{
         return false;
     }
 
+	/*
+	 * this function return column in object
+	 * @param string $table,table name
+	 * @param string $column, column name
+	 * @param string $query,query name
+	 * @param array $param,parameters
+	 * @RETURN ARRAY
+	 */
+	public function getColumn($table,$column,$query ='',$param=array()){
+		//'SHOULD BE DEVELOPED'
+	}
+
 }
 ?>

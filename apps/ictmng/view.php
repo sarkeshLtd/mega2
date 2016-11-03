@@ -36,7 +36,18 @@ class view {
         $txtSerial = new control\textbox('txtCaseSerial');
         $txtSerial->label = _t('Serial of case');
 
-        $form->add($txtSerial);
+        $txtCaseName = new control\textbox('txtCaseName');
+        $txtCaseName->label = _t('Case Model');
+
+        $txtMainboard = new control\textbox('txtMainboard');
+        $txtMainboard->label = _t('Mainboard Model');
+
+        $cobRam = new control\combobox('cobRamValue');
+        $cobRam->label = _t('Ram value (GB)');
+        $cobRam->source = [1,2,4,6,8,16,24,32,64];
+        $cobRam->selected_index = 4;
+
+        $form->addArray([$txtSerial,$txtCaseName,$txtMainboard,$cobRam]);
         return[_t('Submit new case'),$form->draw()];
     }
 }
